@@ -1,0 +1,26 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+             
+    <persistence-unit name="estia" transaction-type="RESOURCE_LOCAL">
+    <!--  
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        -->
+        <!-- domain -->	
+        <class>edu.uoa.estia.domain.Message</class>
+        <class>edu.uoa.estia.domain.Property</class>
+        <class>edu.uoa.estia.domain.PropertyStatusCodes</class>
+        <class>edu.uoa.estia.domain.PropertyTypeCodes</class>
+        <class>edu.uoa.estia.domain.RoleCodes</class>
+        <class>edu.uoa.estia.domain.SortingArlorithmsCodes</class>
+        <class>edu.uoa.estia.domain.User</class>
+        <class>edu.uoa.estia.domain.UserTypeCodes</class>
+
+        <properties>
+            <property name="hibernate.jdbc.batch_size" value="100"/>
+            <property name="hibernate.jdbc.fetch_size" value="10000"/>
+        </properties>
+    </persistence-unit>
+    
+</persistence>

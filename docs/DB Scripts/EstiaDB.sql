@@ -41,20 +41,20 @@ SET default_with_oids = false;
 -- Name: RoleCodes; Type: TABLE; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-CREATE TABLE "RoleCodes" (
+CREATE TABLE RoleCodes (
     id integer NOT NULL,
     type text NOT NULL
 );
 
 
-ALTER TABLE public."RoleCodes" OWNER TO estiauser;
+ALTER TABLE public.RoleCodes OWNER TO estiauser;
 
 --
 -- TOC entry 173 (class 1259 OID 16468)
 -- Name: ES_ROLES_ID_seq; Type: SEQUENCE; Schema: public; Owner: estiauser
 --
 
-CREATE SEQUENCE "ES_ROLES_ID_seq"
+CREATE SEQUENCE ES_ROLES_ID_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -62,7 +62,7 @@ CREATE SEQUENCE "ES_ROLES_ID_seq"
     CACHE 1;
 
 
-ALTER TABLE public."ES_ROLES_ID_seq" OWNER TO estiauser;
+ALTER TABLE public.ES_ROLES_ID_seq OWNER TO estiauser;
 
 --
 -- TOC entry 2051 (class 0 OID 0)
@@ -70,15 +70,15 @@ ALTER TABLE public."ES_ROLES_ID_seq" OWNER TO estiauser;
 -- Name: ES_ROLES_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: estiauser
 --
 
-ALTER SEQUENCE "ES_ROLES_ID_seq" OWNED BY "RoleCodes".id;
+ALTER SEQUENCE ES_ROLES_ID_seq OWNED BY RoleCodes.id;
 
 
 --
 -- TOC entry 170 (class 1259 OID 16459)
--- Name: User; Type: TABLE; Schema: public; Owner: estiauser; Tablespace: 
+-- Name: Users; Type: TABLE; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-CREATE TABLE "User" (
+CREATE TABLE Users (
     id integer NOT NULL,
     username text NOT NULL,
     firstname text,
@@ -90,14 +90,14 @@ CREATE TABLE "User" (
 );
 
 
-ALTER TABLE public."User" OWNER TO estiauser;
+ALTER TABLE public.Users OWNER TO estiauser;
 
 --
 -- TOC entry 174 (class 1259 OID 16477)
 -- Name: ES_USERS_ID_seq; Type: SEQUENCE; Schema: public; Owner: estiauser
 --
 
-CREATE SEQUENCE "ES_USERS_ID_seq"
+CREATE SEQUENCE ES_USERS_ID_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -105,7 +105,7 @@ CREATE SEQUENCE "ES_USERS_ID_seq"
     CACHE 1;
 
 
-ALTER TABLE public."ES_USERS_ID_seq" OWNER TO estiauser;
+ALTER TABLE public.ES_USERS_ID_seq OWNER TO estiauser;
 
 --
 -- TOC entry 2052 (class 0 OID 0)
@@ -113,7 +113,7 @@ ALTER TABLE public."ES_USERS_ID_seq" OWNER TO estiauser;
 -- Name: ES_USERS_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: estiauser
 --
 
-ALTER SEQUENCE "ES_USERS_ID_seq" OWNED BY "User".id;
+ALTER SEQUENCE ES_USERS_ID_seq OWNED BY Users.id;
 
 
 --
@@ -121,23 +121,23 @@ ALTER SEQUENCE "ES_USERS_ID_seq" OWNED BY "User".id;
 -- Name: Message; Type: TABLE; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-CREATE TABLE "Message" (
+CREATE TABLE Message (
     id integer NOT NULL,
-    "userId" integer,
-    "propertyId" integer,
+    userId integer,
+    propertyId integer,
     read boolean,
     message text NOT NULL
 );
 
 
-ALTER TABLE public."Message" OWNER TO estiauser;
+ALTER TABLE public.Message OWNER TO estiauser;
 
 --
 -- TOC entry 186 (class 1259 OID 16654)
 -- Name: Message_id_seq; Type: SEQUENCE; Schema: public; Owner: estiauser
 --
 
-CREATE SEQUENCE "Message_id_seq"
+CREATE SEQUENCE Message_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -145,7 +145,7 @@ CREATE SEQUENCE "Message_id_seq"
     CACHE 1;
 
 
-ALTER TABLE public."Message_id_seq" OWNER TO estiauser;
+ALTER TABLE public.Message_id_seq OWNER TO estiauser;
 
 --
 -- TOC entry 2053 (class 0 OID 0)
@@ -153,55 +153,55 @@ ALTER TABLE public."Message_id_seq" OWNER TO estiauser;
 -- Name: Message_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: estiauser
 --
 
-ALTER SEQUENCE "Message_id_seq" OWNED BY "Message".id;
+ALTER SEQUENCE Message_id_seq OWNED BY Message.id;
 
 
 --
 -- TOC entry 185 (class 1259 OID 16639)
--- Name: PopertyStatus; Type: TABLE; Schema: public; Owner: estiauser; Tablespace: 
+-- Name: PropertyStatus; Type: TABLE; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-CREATE TABLE "PopertyStatus" (
-    "propertyId" integer NOT NULL,
-    "propertyStatus" integer NOT NULL
+CREATE TABLE PropertyStatus (
+    propertyId integer NOT NULL,
+    propertyStatus integer NOT NULL
 );
 
 
-ALTER TABLE public."PopertyStatus" OWNER TO estiauser;
+ALTER TABLE public.PropertyStatus OWNER TO estiauser;
 
 --
 -- TOC entry 184 (class 1259 OID 16610)
 -- Name: Property; Type: TABLE; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-CREATE TABLE "Property" (
+CREATE TABLE Property (
     id integer NOT NULL,
-    "userId" integer NOT NULL,
+    userId integer NOT NULL,
     type integer NOT NULL
 );
 
 
-ALTER TABLE public."Property" OWNER TO estiauser;
+ALTER TABLE public.Property OWNER TO estiauser;
 
 --
 -- TOC entry 182 (class 1259 OID 16599)
 -- Name: PropertyStatusCodes; Type: TABLE; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-CREATE TABLE "PropertyStatusCodes" (
+CREATE TABLE PropertyStatusCodes (
     id integer NOT NULL,
     status text NOT NULL
 );
 
 
-ALTER TABLE public."PropertyStatusCodes" OWNER TO estiauser;
+ALTER TABLE public.PropertyStatusCodes OWNER TO estiauser;
 
 --
 -- TOC entry 181 (class 1259 OID 16597)
 -- Name: PropertyStatus_id_seq; Type: SEQUENCE; Schema: public; Owner: estiauser
 --
 
-CREATE SEQUENCE "PropertyStatus_id_seq"
+CREATE SEQUENCE PropertyStatus_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -209,7 +209,7 @@ CREATE SEQUENCE "PropertyStatus_id_seq"
     CACHE 1;
 
 
-ALTER TABLE public."PropertyStatus_id_seq" OWNER TO estiauser;
+ALTER TABLE public.PropertyStatus_id_seq OWNER TO estiauser;
 
 --
 -- TOC entry 2054 (class 0 OID 0)
@@ -217,7 +217,7 @@ ALTER TABLE public."PropertyStatus_id_seq" OWNER TO estiauser;
 -- Name: PropertyStatus_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: estiauser
 --
 
-ALTER SEQUENCE "PropertyStatus_id_seq" OWNED BY "PropertyStatusCodes".id;
+ALTER SEQUENCE PropertyStatus_id_seq OWNED BY PropertyStatusCodes.id;
 
 
 --
@@ -225,20 +225,20 @@ ALTER SEQUENCE "PropertyStatus_id_seq" OWNED BY "PropertyStatusCodes".id;
 -- Name: PropertyTypeCodes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE "PropertyTypeCodes" (
+CREATE TABLE PropertyTypeCodes (
     id integer NOT NULL,
     type text
 );
 
 
-ALTER TABLE public."PropertyTypeCodes" OWNER TO postgres;
+ALTER TABLE public.PropertyTypeCodes OWNER TO estiauser;
 
 --
 -- TOC entry 179 (class 1259 OID 16559)
 -- Name: PropertyType_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE "PropertyType_id_seq"
+CREATE SEQUENCE PropertyType_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -246,7 +246,7 @@ CREATE SEQUENCE "PropertyType_id_seq"
     CACHE 1;
 
 
-ALTER TABLE public."PropertyType_id_seq" OWNER TO postgres;
+ALTER TABLE public.PropertyType_id_seq OWNER TO estiauser;
 
 --
 -- TOC entry 2055 (class 0 OID 0)
@@ -254,7 +254,7 @@ ALTER TABLE public."PropertyType_id_seq" OWNER TO postgres;
 -- Name: PropertyType_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "PropertyType_id_seq" OWNED BY "PropertyTypeCodes".id;
+ALTER SEQUENCE PropertyType_id_seq OWNED BY PropertyTypeCodes.id;
 
 
 --
@@ -262,7 +262,7 @@ ALTER SEQUENCE "PropertyType_id_seq" OWNED BY "PropertyTypeCodes".id;
 -- Name: Property_id_seq; Type: SEQUENCE; Schema: public; Owner: estiauser
 --
 
-CREATE SEQUENCE "Property_id_seq"
+CREATE SEQUENCE Property_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -270,7 +270,7 @@ CREATE SEQUENCE "Property_id_seq"
     CACHE 1;
 
 
-ALTER TABLE public."Property_id_seq" OWNER TO estiauser;
+ALTER TABLE public.Property_id_seq OWNER TO estiauser;
 
 --
 -- TOC entry 2056 (class 0 OID 0)
@@ -278,41 +278,41 @@ ALTER TABLE public."Property_id_seq" OWNER TO estiauser;
 -- Name: Property_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: estiauser
 --
 
-ALTER SEQUENCE "Property_id_seq" OWNED BY "Property".id;
+ALTER SEQUENCE Property_id_seq OWNED BY Property.id;
 
 
 --
 -- TOC entry 178 (class 1259 OID 16550)
--- Name: SortingArlorithmsCodes; Type: TABLE; Schema: public; Owner: estiauser; Tablespace: 
+-- Name: SortingAlgorithmsCodes; Type: TABLE; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-CREATE TABLE "SortingArlorithmsCodes" (
+CREATE TABLE SortingAlgorithmsCodes (
     id integer NOT NULL,
     description text NOT NULL
 );
 
 
-ALTER TABLE public."SortingArlorithmsCodes" OWNER TO estiauser;
+ALTER TABLE public.SortingAlgorithmsCodes OWNER TO estiauser;
 
 --
 -- TOC entry 176 (class 1259 OID 16519)
 -- Name: UserTypeCodes; Type: TABLE; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-CREATE TABLE "UserTypeCodes" (
+CREATE TABLE UserTypeCodes (
     id integer NOT NULL,
     type text
 );
 
 
-ALTER TABLE public."UserTypeCodes" OWNER TO estiauser;
+ALTER TABLE public.UserTypeCodes OWNER TO estiauser;
 
 --
 -- TOC entry 175 (class 1259 OID 16517)
 -- Name: USERTYPE_id_seq; Type: SEQUENCE; Schema: public; Owner: estiauser
 --
 
-CREATE SEQUENCE "USERTYPE_id_seq"
+CREATE SEQUENCE USERTYPE_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -320,7 +320,7 @@ CREATE SEQUENCE "USERTYPE_id_seq"
     CACHE 1;
 
 
-ALTER TABLE public."USERTYPE_id_seq" OWNER TO estiauser;
+ALTER TABLE public.USERTYPE_id_seq OWNER TO estiauser;
 
 --
 -- TOC entry 2057 (class 0 OID 0)
@@ -328,7 +328,7 @@ ALTER TABLE public."USERTYPE_id_seq" OWNER TO estiauser;
 -- Name: USERTYPE_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: estiauser
 --
 
-ALTER SEQUENCE "USERTYPE_id_seq" OWNED BY "UserTypeCodes".id;
+ALTER SEQUENCE USERTYPE_id_seq OWNED BY UserTypeCodes.id;
 
 
 --
@@ -336,20 +336,20 @@ ALTER SEQUENCE "USERTYPE_id_seq" OWNED BY "UserTypeCodes".id;
 -- Name: UserRole; Type: TABLE; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-CREATE TABLE "UserRole" (
-    "userId" integer NOT NULL,
-    "roleId" integer NOT NULL
+CREATE TABLE UserRole (
+    userId integer NOT NULL,
+    roleId integer NOT NULL
 );
 
 
-ALTER TABLE public."UserRole" OWNER TO estiauser;
+ALTER TABLE public.UserRole OWNER TO estiauser;
 
 --
 -- TOC entry 177 (class 1259 OID 16548)
--- Name: sortingArlorithms_id_seq; Type: SEQUENCE; Schema: public; Owner: estiauser
+-- Name: sortingAlgorithms_id_seq; Type: SEQUENCE; Schema: public; Owner: estiauser
 --
 
-CREATE SEQUENCE "sortingArlorithms_id_seq"
+CREATE SEQUENCE sortingAlgorithms_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -357,15 +357,15 @@ CREATE SEQUENCE "sortingArlorithms_id_seq"
     CACHE 1;
 
 
-ALTER TABLE public."sortingArlorithms_id_seq" OWNER TO estiauser;
+ALTER TABLE public.sortingAlgorithms_id_seq OWNER TO estiauser;
 
 --
 -- TOC entry 2058 (class 0 OID 0)
 -- Dependencies: 177
--- Name: sortingArlorithms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: estiauser
+-- Name: sortingAlgorithms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: estiauser
 --
 
-ALTER SEQUENCE "sortingArlorithms_id_seq" OWNED BY "SortingArlorithmsCodes".id;
+ALTER SEQUENCE sortingAlgorithms_id_seq OWNED BY SortingAlgorithmsCodes.id;
 
 
 --
@@ -373,7 +373,7 @@ ALTER SEQUENCE "sortingArlorithms_id_seq" OWNED BY "SortingArlorithmsCodes".id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "Message" ALTER COLUMN id SET DEFAULT nextval('"Message_id_seq"'::regclass);
+ALTER TABLE ONLY Message ALTER COLUMN id SET DEFAULT nextval('Message_id_seq'::regclass);
 
 
 --
@@ -381,7 +381,7 @@ ALTER TABLE ONLY "Message" ALTER COLUMN id SET DEFAULT nextval('"Message_id_seq"
 -- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "Property" ALTER COLUMN id SET DEFAULT nextval('"Property_id_seq"'::regclass);
+ALTER TABLE ONLY Property ALTER COLUMN id SET DEFAULT nextval('Property_id_seq'::regclass);
 
 
 --
@@ -389,7 +389,7 @@ ALTER TABLE ONLY "Property" ALTER COLUMN id SET DEFAULT nextval('"Property_id_se
 -- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "PropertyStatusCodes" ALTER COLUMN id SET DEFAULT nextval('"PropertyStatus_id_seq"'::regclass);
+ALTER TABLE ONLY PropertyStatusCodes ALTER COLUMN id SET DEFAULT nextval('PropertyStatus_id_seq'::regclass);
 
 
 --
@@ -397,7 +397,7 @@ ALTER TABLE ONLY "PropertyStatusCodes" ALTER COLUMN id SET DEFAULT nextval('"Pro
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "PropertyTypeCodes" ALTER COLUMN id SET DEFAULT nextval('"PropertyType_id_seq"'::regclass);
+ALTER TABLE ONLY PropertyTypeCodes ALTER COLUMN id SET DEFAULT nextval('PropertyType_id_seq'::regclass);
 
 
 --
@@ -405,7 +405,7 @@ ALTER TABLE ONLY "PropertyTypeCodes" ALTER COLUMN id SET DEFAULT nextval('"Prope
 -- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "RoleCodes" ALTER COLUMN id SET DEFAULT nextval('"ES_ROLES_ID_seq"'::regclass);
+ALTER TABLE ONLY RoleCodes ALTER COLUMN id SET DEFAULT nextval('ES_ROLES_ID_seq'::regclass);
 
 
 --
@@ -413,7 +413,7 @@ ALTER TABLE ONLY "RoleCodes" ALTER COLUMN id SET DEFAULT nextval('"ES_ROLES_ID_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "SortingArlorithmsCodes" ALTER COLUMN id SET DEFAULT nextval('"sortingArlorithms_id_seq"'::regclass);
+ALTER TABLE ONLY SortingAlgorithmsCodes ALTER COLUMN id SET DEFAULT nextval('sortingAlgorithms_id_seq'::regclass);
 
 
 --
@@ -421,7 +421,7 @@ ALTER TABLE ONLY "SortingArlorithmsCodes" ALTER COLUMN id SET DEFAULT nextval('"
 -- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "User" ALTER COLUMN id SET DEFAULT nextval('"ES_USERS_ID_seq"'::regclass);
+ALTER TABLE ONLY Users ALTER COLUMN id SET DEFAULT nextval('ES_USERS_ID_seq'::regclass);
 
 
 --
@@ -429,7 +429,7 @@ ALTER TABLE ONLY "User" ALTER COLUMN id SET DEFAULT nextval('"ES_USERS_ID_seq"':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "UserTypeCodes" ALTER COLUMN id SET DEFAULT nextval('"USERTYPE_id_seq"'::regclass);
+ALTER TABLE ONLY UserTypeCodes ALTER COLUMN id SET DEFAULT nextval('USERTYPE_id_seq'::regclass);
 
 
 --
@@ -438,7 +438,7 @@ ALTER TABLE ONLY "UserTypeCodes" ALTER COLUMN id SET DEFAULT nextval('"USERTYPE_
 -- Name: ES_ROLES_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: estiauser
 --
 
-SELECT pg_catalog.setval('"ES_ROLES_ID_seq"', 1, false);
+SELECT pg_catalog.setval('ES_ROLES_ID_seq', 1, false);
 
 
 --
@@ -447,7 +447,7 @@ SELECT pg_catalog.setval('"ES_ROLES_ID_seq"', 1, false);
 -- Name: ES_USERS_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: estiauser
 --
 
-SELECT pg_catalog.setval('"ES_USERS_ID_seq"', 1, false);
+SELECT pg_catalog.setval('ES_USERS_ID_seq', 1, false);
 
 
 --
@@ -456,8 +456,6 @@ SELECT pg_catalog.setval('"ES_USERS_ID_seq"', 1, false);
 -- Data for Name: Message; Type: TABLE DATA; Schema: public; Owner: estiauser
 --
 
-COPY "Message" (id, "userId", "propertyId", read, message) FROM stdin;
-\.
 
 
 --
@@ -466,69 +464,12 @@ COPY "Message" (id, "userId", "propertyId", read, message) FROM stdin;
 -- Name: Message_id_seq; Type: SEQUENCE SET; Schema: public; Owner: estiauser
 --
 
-SELECT pg_catalog.setval('"Message_id_seq"', 1, false);
+SELECT pg_catalog.setval('Message_id_seq', 1, false);
 
 
---
--- TOC entry 2040 (class 0 OID 16639)
--- Dependencies: 185
--- Data for Name: PopertyStatus; Type: TABLE DATA; Schema: public; Owner: estiauser
---
+SELECT pg_catalog.setval('PropertyStatus_id_seq', 1, false);
 
-COPY "PopertyStatus" ("propertyId", "propertyStatus") FROM stdin;
-\.
-
-
---
--- TOC entry 2039 (class 0 OID 16610)
--- Dependencies: 184
--- Data for Name: Property; Type: TABLE DATA; Schema: public; Owner: estiauser
---
-
-COPY "Property" (id, "userId", type) FROM stdin;
-\.
-
-
---
--- TOC entry 2037 (class 0 OID 16599)
--- Dependencies: 182
--- Data for Name: PropertyStatusCodes; Type: TABLE DATA; Schema: public; Owner: estiauser
---
-
-COPY "PropertyStatusCodes" (id, status) FROM stdin;
-1	Rent
-2	Sale
-\.
-
-
---
--- TOC entry 2062 (class 0 OID 0)
--- Dependencies: 181
--- Name: PropertyStatus_id_seq; Type: SEQUENCE SET; Schema: public; Owner: estiauser
---
-
-SELECT pg_catalog.setval('"PropertyStatus_id_seq"', 1, false);
-
-
---
--- TOC entry 2035 (class 0 OID 16561)
--- Dependencies: 180
--- Data for Name: PropertyTypeCodes; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "PropertyTypeCodes" (id, type) FROM stdin;
-1	House
-2	Apartment
-\.
-
-
---
--- TOC entry 2063 (class 0 OID 0)
--- Dependencies: 179
--- Name: PropertyType_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"PropertyType_id_seq"', 1, false);
+SELECT pg_catalog.setval('PropertyType_id_seq', 1, false);
 
 
 --
@@ -537,106 +478,26 @@ SELECT pg_catalog.setval('"PropertyType_id_seq"', 1, false);
 -- Name: Property_id_seq; Type: SEQUENCE SET; Schema: public; Owner: estiauser
 --
 
-SELECT pg_catalog.setval('"Property_id_seq"', 1, false);
+SELECT pg_catalog.setval('Property_id_seq', 1, false);
 
 
---
--- TOC entry 2026 (class 0 OID 16462)
--- Dependencies: 171
--- Data for Name: RoleCodes; Type: TABLE DATA; Schema: public; Owner: estiauser
---
-
-COPY "RoleCodes" (id, type) FROM stdin;
-1	Admin
-2	Seller
-3	Visitor
-4	Buyer
-5	Lessor
-6	Tenant
-\.
+SELECT pg_catalog.setval('USERTYPE_id_seq', 1, false);
 
 
---
--- TOC entry 2033 (class 0 OID 16550)
--- Dependencies: 178
--- Data for Name: SortingArlorithmsCodes; Type: TABLE DATA; Schema: public; Owner: estiauser
---
-
-COPY "SortingArlorithmsCodes" (id, description) FROM stdin;
-1	SAW
-2	TOPSIS
-\.
+SELECT pg_catalog.setval('sortingAlgorithms_id_seq', 1, false);
 
 
---
--- TOC entry 2065 (class 0 OID 0)
--- Dependencies: 175
--- Name: USERTYPE_id_seq; Type: SEQUENCE SET; Schema: public; Owner: estiauser
---
-
-SELECT pg_catalog.setval('"USERTYPE_id_seq"', 1, false);
-
-
---
--- TOC entry 2025 (class 0 OID 16459)
--- Dependencies: 170
--- Data for Name: User; Type: TABLE DATA; Schema: public; Owner: estiauser
---
-
-COPY "User" (id, username, firstname, lastname, email, telephone, password, type) FROM stdin;
-1	estiauser	estiauser	estiauser	estiauser@estiauser.estiauser	0123456789	estiapwd	100
-\.
-
-
---
--- TOC entry 2027 (class 0 OID 16465)
--- Dependencies: 172
--- Data for Name: UserRole; Type: TABLE DATA; Schema: public; Owner: estiauser
---
-
-COPY "UserRole" ("userId", "roleId") FROM stdin;
-1	1
-\.
-
-
---
--- TOC entry 2031 (class 0 OID 16519)
--- Dependencies: 176
--- Data for Name: UserTypeCodes; Type: TABLE DATA; Schema: public; Owner: estiauser
---
-
-COPY "UserTypeCodes" (id, type) FROM stdin;
-1	Pending
-900	Deleted
-100	Active
-\.
-
-
---
--- TOC entry 2066 (class 0 OID 0)
--- Dependencies: 177
--- Name: sortingArlorithms_id_seq; Type: SEQUENCE SET; Schema: public; Owner: estiauser
---
-
-SELECT pg_catalog.setval('"sortingArlorithms_id_seq"', 1, false);
-
-
---
--- TOC entry 1909 (class 2606 OID 16661)
--- Name: Message_pkey; Type: CONSTRAINT; Schema: public; Owner: estiauser; Tablespace: 
---
-
-ALTER TABLE ONLY "Message"
-    ADD CONSTRAINT "Message_pkey" PRIMARY KEY (id);
+ALTER TABLE ONLY Message
+    ADD CONSTRAINT Message_pkey PRIMARY KEY (id);
 
 
 --
 -- TOC entry 1907 (class 2606 OID 16643)
--- Name: PopertyStatus_pkey; Type: CONSTRAINT; Schema: public; Owner: estiauser; Tablespace: 
+-- Name: PropertyStatus_pkey; Type: CONSTRAINT; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-ALTER TABLE ONLY "PopertyStatus"
-    ADD CONSTRAINT "PopertyStatus_pkey" PRIMARY KEY ("propertyId", "propertyStatus");
+ALTER TABLE ONLY PropertyStatus
+    ADD CONSTRAINT PropertyStatus_pkey PRIMARY KEY (propertyId, propertyStatus);
 
 
 --
@@ -644,7 +505,7 @@ ALTER TABLE ONLY "PopertyStatus"
 -- Name: id; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY "PropertyTypeCodes"
+ALTER TABLE ONLY PropertyTypeCodes
     ADD CONSTRAINT id PRIMARY KEY (id);
 
 
@@ -653,7 +514,7 @@ ALTER TABLE ONLY "PropertyTypeCodes"
 -- Name: id_pkey; Type: CONSTRAINT; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-ALTER TABLE ONLY "UserTypeCodes"
+ALTER TABLE ONLY UserTypeCodes
     ADD CONSTRAINT id_pkey PRIMARY KEY (id);
 
 
@@ -662,7 +523,7 @@ ALTER TABLE ONLY "UserTypeCodes"
 -- Name: key; Type: CONSTRAINT; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-ALTER TABLE ONLY "PropertyStatusCodes"
+ALTER TABLE ONLY PropertyStatusCodes
     ADD CONSTRAINT key PRIMARY KEY (id);
 
 
@@ -671,8 +532,8 @@ ALTER TABLE ONLY "PropertyStatusCodes"
 -- Name: propertId; Type: CONSTRAINT; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-ALTER TABLE ONLY "Property"
-    ADD CONSTRAINT "propertId" PRIMARY KEY (id);
+ALTER TABLE ONLY Property
+    ADD CONSTRAINT propertId PRIMARY KEY (id);
 
 
 --
@@ -680,7 +541,7 @@ ALTER TABLE ONLY "Property"
 -- Name: role_pkey; Type: CONSTRAINT; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-ALTER TABLE ONLY "RoleCodes"
+ALTER TABLE ONLY RoleCodes
     ADD CONSTRAINT role_pkey PRIMARY KEY (id);
 
 
@@ -689,7 +550,7 @@ ALTER TABLE ONLY "RoleCodes"
 -- Name: sortingalgorithm; Type: CONSTRAINT; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-ALTER TABLE ONLY "SortingArlorithmsCodes"
+ALTER TABLE ONLY SortingAlgorithmsCodes
     ADD CONSTRAINT sortingalgorithm PRIMARY KEY (id);
 
 
@@ -698,7 +559,7 @@ ALTER TABLE ONLY "SortingArlorithmsCodes"
 -- Name: user_pkey; Type: CONSTRAINT; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-ALTER TABLE ONLY "User"
+ALTER TABLE ONLY Users
     ADD CONSTRAINT user_pkey PRIMARY KEY (id);
 
 
@@ -707,8 +568,8 @@ ALTER TABLE ONLY "User"
 -- Name: userrole; Type: CONSTRAINT; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-ALTER TABLE ONLY "UserRole"
-    ADD CONSTRAINT userrole PRIMARY KEY ("userId", "roleId");
+ALTER TABLE ONLY UserRole
+    ADD CONSTRAINT userrole_pkey PRIMARY KEY (userId, roleId);
 
 
 --
@@ -716,7 +577,7 @@ ALTER TABLE ONLY "UserRole"
 -- Name: fki_ROLE_ID; Type: INDEX; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-CREATE INDEX "fki_ROLE_ID" ON "UserRole" USING btree ("roleId");
+CREATE INDEX fki_ROLE_ID ON UserRole USING btree (roleId);
 
 
 --
@@ -724,7 +585,7 @@ CREATE INDEX "fki_ROLE_ID" ON "UserRole" USING btree ("roleId");
 -- Name: fki_USER_ID; Type: INDEX; Schema: public; Owner: estiauser; Tablespace: 
 --
 
-CREATE INDEX "fki_USER_ID" ON "UserRole" USING btree ("userId");
+CREATE INDEX fki_USER_ID ON UserRole USING btree (userId);
 
 
 --
@@ -732,8 +593,8 @@ CREATE INDEX "fki_USER_ID" ON "UserRole" USING btree ("userId");
 -- Name: Message_propertyId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "Message"
-    ADD CONSTRAINT "Message_propertyId_fkey" FOREIGN KEY ("propertyId") REFERENCES "Property"(id);
+ALTER TABLE ONLY Message
+    ADD CONSTRAINT Message_propertyId_fkey FOREIGN KEY (propertyId) REFERENCES Property(id);
 
 
 --
@@ -741,8 +602,8 @@ ALTER TABLE ONLY "Message"
 -- Name: Message_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "Message"
-    ADD CONSTRAINT "Message_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"(id);
+ALTER TABLE ONLY Message
+    ADD CONSTRAINT Message_userId_fkey FOREIGN KEY (userId) REFERENCES Users(id);
 
 
 --
@@ -750,8 +611,8 @@ ALTER TABLE ONLY "Message"
 -- Name: foreign2; Type: FK CONSTRAINT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "PopertyStatus"
-    ADD CONSTRAINT foreign2 FOREIGN KEY ("propertyId") REFERENCES "PropertyStatusCodes"(id);
+ALTER TABLE ONLY PropertyStatus
+    ADD CONSTRAINT foreign2 FOREIGN KEY (propertyId) REFERENCES PropertyStatusCodes(id);
 
 
 --
@@ -759,8 +620,8 @@ ALTER TABLE ONLY "PopertyStatus"
 -- Name: foreing1; Type: FK CONSTRAINT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "PopertyStatus"
-    ADD CONSTRAINT foreing1 FOREIGN KEY ("propertyId") REFERENCES "Property"(id);
+ALTER TABLE ONLY PropertyStatus
+    ADD CONSTRAINT foreing1 FOREIGN KEY (propertyId) REFERENCES Property(id);
 
 
 --
@@ -768,8 +629,8 @@ ALTER TABLE ONLY "PopertyStatus"
 -- Name: roleId; Type: FK CONSTRAINT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "UserRole"
-    ADD CONSTRAINT "roleId" FOREIGN KEY ("roleId") REFERENCES "RoleCodes"(id);
+ALTER TABLE ONLY UserRole
+    ADD CONSTRAINT roleId FOREIGN KEY (roleId) REFERENCES RoleCodes(id);
 
 
 --
@@ -777,17 +638,17 @@ ALTER TABLE ONLY "UserRole"
 -- Name: type; Type: FK CONSTRAINT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "Property"
-    ADD CONSTRAINT type FOREIGN KEY (type) REFERENCES "PropertyTypeCodes"(id);
+ALTER TABLE ONLY Property
+    ADD CONSTRAINT type FOREIGN KEY (type) REFERENCES PropertyTypeCodes(id);
 
 
 --
 -- TOC entry 1912 (class 2606 OID 16629)
--- Name: user; Type: FK CONSTRAINT; Schema: public; Owner: estiauser
+-- Name: Users; Type: FK CONSTRAINT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "Property"
-    ADD CONSTRAINT "user" FOREIGN KEY ("userId") REFERENCES "User"(id);
+ALTER TABLE ONLY Property
+    ADD CONSTRAINT Users FOREIGN KEY (userId) REFERENCES Users(id);
 
 
 --
@@ -795,8 +656,8 @@ ALTER TABLE ONLY "Property"
 -- Name: userId; Type: FK CONSTRAINT; Schema: public; Owner: estiauser
 --
 
-ALTER TABLE ONLY "UserRole"
-    ADD CONSTRAINT "userId" FOREIGN KEY ("userId") REFERENCES "User"(id);
+ALTER TABLE ONLY UserRole
+    ADD CONSTRAINT userId FOREIGN KEY (userId) REFERENCES Users(id);
 
 
 --
