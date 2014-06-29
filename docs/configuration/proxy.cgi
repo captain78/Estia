@@ -30,16 +30,13 @@ method = os.environ["REQUEST_METHOD"]
 if method == "POST":
     qs = os.environ["QUERY_STRING"]
     d = cgi.parse_qs(qs)
-    if d.has_key("url"):
+    if "url" in d:
         url = d["url"][0]
     else:
         url = "http://www.openlayers.org"
-        #url = "http://localhost:8090/geoserver/wfs?request=GetFeature&version=1.1.0&typeName=topp:states&propertyName=STATE_NAME,PERSONS&BBOX=-75.102613,40.212597,-72.361859,41.512517,EPSG:4326"
 else:
     fs = cgi.FieldStorage()
     url = fs.getvalue('url', "http://www.openlayers.org")
-    # url = fs.getvalue('url', "http://localhost:8090/geoserver/wfs?request=GetFeature&version=1.1.0&typeName=topp:states&propertyName=STATE_NAME,PERSONS&BBOX=-75.102613,40.212597,-72.361859,41.512517,EPSG:4326")
-
 try:
     host = url.split("/")[2]
     if allowedHosts and not host in allowedHosts:
@@ -56,20 +53,23 @@ try:
             length = int(os.environ["CONTENT_LENGTH"])
             headers = {"Content-Type": os.environ["CONTENT_TYPE"]}
             body = sys.stdin.read(length)
-            r = urllib.request.Request(url, body, headers)
+            binary_data = body.encode('utf-8')
+            r = urllib.request.Request(url, binary_data, headers)
             y = urllib.request.urlopen(r)
         else:
             y = urllib.request.urlopen(url)
-        
-        # print content type header
+            
+        # Get response headers
         i = y.info()
-        if "Content-Type" in i:
-            print("Content-Type: %s" % (i["Content-Type"]))
-        else:
-            print("Content-Type: text/plain\n\n")
+        # Copy all headers
+        for k, v in i.items():
+            print(k+": "+v)       
         print()
-        
-        print(str(y.read(),'utf-8'))
+        # avoid utf-8 transformation. write bytes directly
+        sys.stdout.flush() # make sure all print() calls are flushed
+        sys.stdout.buffer.write(y.read())
+        # or
+        # print(y.read().decode('utf-8'))
         
         y.close()
     else:
