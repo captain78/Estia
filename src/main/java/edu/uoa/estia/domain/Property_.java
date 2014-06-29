@@ -10,7 +10,7 @@ public class Property_ {
 
     public static volatile SingularAttribute<Property, Integer> id;
 
-    public static volatile SingularAttribute<Property, PropertyTypeCodes> type;
+    public static volatile SingularAttribute<Property, PropertyType> type;
     public static volatile SingularAttribute<Property, Integer> type_;
 
     public static volatile SingularAttribute<Property, User> userid;

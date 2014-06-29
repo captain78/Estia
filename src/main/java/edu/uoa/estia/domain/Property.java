@@ -28,7 +28,7 @@ public class Property implements Serializable {
 
     @ManyToOne (fetch=FetchType.LAZY , optional=false)
     @JoinColumn(name="type", referencedColumnName = "id" , nullable=false , unique=false , insertable=true, updatable=true) 
-    private PropertyTypeCodes type;  
+    private PropertyType type;  
 
     @Column(name="type"  , nullable=false , unique=false, insertable=false, updatable=false)
     private Integer type_;
@@ -52,11 +52,11 @@ public class Property implements Serializable {
     }
     
 
-    public PropertyTypeCodes getType () {
+    public PropertyType getType () {
     	return type;
     }
 	
-    public void setType (PropertyTypeCodes type) {
+    public void setType (PropertyType type) {
     	this.type = type;
     }
 

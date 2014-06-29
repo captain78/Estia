@@ -12,23 +12,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity 
 @Table (name="PropertyTypeCodes")
 
-public class PropertyTypeCodes implements Serializable {
+public class PropertyType implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id @Column(name="id" ) 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id 
+    @Column(name="id" ) 
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator ="propertyTypeSequence")
+    @SequenceGenerator(name = "propertyTypeSequence", sequenceName="PropertyType_id_seq", allocationSize=1)
     private Integer id;
 
     @Column(name="type"   , nullable=true , unique=false)
     private String type; 
 
     @OneToMany (targetEntity=edu.uoa.estia.domain.Property.class, fetch=FetchType.LAZY, mappedBy="type", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
-    private Set <Property> propertyPropertytypecodesViaType = new HashSet<Property>(); 
+    private Set <Property> propertyPropertyTypeCodeViaType = new HashSet<Property>(); 
 
     public Integer getId() {
         return id;
@@ -46,18 +49,18 @@ public class PropertyTypeCodes implements Serializable {
         this.type =  type;
     }
 	
-    public Set<Property> getPropertyPropertytypecodesViaType() {
-        if (propertyPropertytypecodesViaType == null){
-            propertyPropertytypecodesViaType = new HashSet<Property>();
+    public Set<Property> getPropertyPropertyTypeCodeViaType() {
+        if (propertyPropertyTypeCodeViaType == null){
+        	propertyPropertyTypeCodeViaType = new HashSet<Property>();
         }
-        return propertyPropertytypecodesViaType;
+        return propertyPropertyTypeCodeViaType;
     }
 
-    public void setPropertyPropertytypecodesViaType (Set<Property> propertyPropertytypecodesViaType) {
-        this.propertyPropertytypecodesViaType = propertyPropertytypecodesViaType;
+    public void setPropertyPropertyTypeCodeViaType (Set<Property> propertyPropertyTypeCodeViaType) {
+        this.propertyPropertyTypeCodeViaType = propertyPropertyTypeCodeViaType;
     }	
     
     public void addPropertyPropertytypecodesViaType (Property element) {
-    	    getPropertyPropertytypecodesViaType().add(element);
+    	getPropertyPropertyTypeCodeViaType().add(element);
     }
 }

@@ -15,10 +15,13 @@ public class User_ {
     public static volatile SingularAttribute<User, String> email;
     public static volatile SingularAttribute<User, String> telephone;
     public static volatile SingularAttribute<User, String> password;
-    public static volatile SingularAttribute<User, java.lang.Integer> type;
-    public static volatile SetAttribute<User, Message> messageUserViaUserid;
-    public static volatile SetAttribute<User, Property> propertyUserViaUserid;
+    public static volatile SingularAttribute<User, java.lang.Integer> type_;
+    public static volatile SingularAttribute<User, UserType> type;
+    
+    
+    public static volatile SetAttribute<User, Message> messageUserViaUserId;
+    public static volatile SetAttribute<User, Property> propertyUserViaUserId;
 
-    public static volatile SetAttribute<User, RoleCodes> rolecodesViaUserroleByRoleid;
+    public static volatile SetAttribute<User, Role> roleViaUserRoleByRoleId;
 
 }

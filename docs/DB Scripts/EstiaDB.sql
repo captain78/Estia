@@ -367,78 +367,13 @@ ALTER TABLE public.sortingAlgorithms_id_seq OWNER TO estiauser;
 
 ALTER SEQUENCE sortingAlgorithms_id_seq OWNED BY SortingAlgorithmsCodes.id;
 
-
---
--- TOC entry 1887 (class 2604 OID 16659)
--- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
---
-
-ALTER TABLE ONLY Message ALTER COLUMN id SET DEFAULT nextval('Message_id_seq'::regclass);
-
-
---
--- TOC entry 1886 (class 2604 OID 16613)
--- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
---
-
-ALTER TABLE ONLY Property ALTER COLUMN id SET DEFAULT nextval('Property_id_seq'::regclass);
-
-
---
--- TOC entry 1885 (class 2604 OID 16602)
--- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
---
-
-ALTER TABLE ONLY PropertyStatusCodes ALTER COLUMN id SET DEFAULT nextval('PropertyStatus_id_seq'::regclass);
-
-
---
--- TOC entry 1884 (class 2604 OID 16564)
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY PropertyTypeCodes ALTER COLUMN id SET DEFAULT nextval('PropertyType_id_seq'::regclass);
-
-
---
--- TOC entry 1881 (class 2604 OID 16470)
--- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
---
-
-ALTER TABLE ONLY RoleCodes ALTER COLUMN id SET DEFAULT nextval('ES_ROLES_ID_seq'::regclass);
-
-
---
--- TOC entry 1883 (class 2604 OID 16553)
--- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
---
-
-ALTER TABLE ONLY SortingAlgorithmsCodes ALTER COLUMN id SET DEFAULT nextval('sortingAlgorithms_id_seq'::regclass);
-
-
---
--- TOC entry 1880 (class 2604 OID 16479)
--- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
---
-
-ALTER TABLE ONLY Users ALTER COLUMN id SET DEFAULT nextval('ES_USERS_ID_seq'::regclass);
-
-
---
--- TOC entry 1882 (class 2604 OID 16522)
--- Name: id; Type: DEFAULT; Schema: public; Owner: estiauser
---
-
-ALTER TABLE ONLY UserTypeCodes ALTER COLUMN id SET DEFAULT nextval('USERTYPE_id_seq'::regclass);
-
-
 --
 -- TOC entry 2059 (class 0 OID 0)
 -- Dependencies: 173
 -- Name: ES_ROLES_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: estiauser
 --
 
-SELECT pg_catalog.setval('ES_ROLES_ID_seq', 1, false);
+SELECT pg_catalog.setval('ES_ROLES_ID_seq', 6, true);
 
 
 --
@@ -447,16 +382,7 @@ SELECT pg_catalog.setval('ES_ROLES_ID_seq', 1, false);
 -- Name: ES_USERS_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: estiauser
 --
 
-SELECT pg_catalog.setval('ES_USERS_ID_seq', 1, false);
-
-
---
--- TOC entry 2042 (class 0 OID 16656)
--- Dependencies: 187
--- Data for Name: Message; Type: TABLE DATA; Schema: public; Owner: estiauser
---
-
-
+SELECT pg_catalog.setval('ES_USERS_ID_seq', 1, true);
 
 --
 -- TOC entry 2061 (class 0 OID 0)
@@ -467,9 +393,9 @@ SELECT pg_catalog.setval('ES_USERS_ID_seq', 1, false);
 SELECT pg_catalog.setval('Message_id_seq', 1, false);
 
 
-SELECT pg_catalog.setval('PropertyStatus_id_seq', 1, false);
+SELECT pg_catalog.setval('PropertyStatus_id_seq', 2, true);
 
-SELECT pg_catalog.setval('PropertyType_id_seq', 1, false);
+SELECT pg_catalog.setval('PropertyType_id_seq', 2, true);
 
 
 --
@@ -481,10 +407,10 @@ SELECT pg_catalog.setval('PropertyType_id_seq', 1, false);
 SELECT pg_catalog.setval('Property_id_seq', 1, false);
 
 
-SELECT pg_catalog.setval('USERTYPE_id_seq', 1, false);
+SELECT pg_catalog.setval('USERTYPE_id_seq', 900, true);
 
 
-SELECT pg_catalog.setval('sortingAlgorithms_id_seq', 1, false);
+SELECT pg_catalog.setval('sortingAlgorithms_id_seq', 2, true);
 
 
 ALTER TABLE ONLY Message

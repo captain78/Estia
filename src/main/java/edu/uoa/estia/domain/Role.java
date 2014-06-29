@@ -12,26 +12,29 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table (name="RoleCodes")
 
-public class RoleCodes implements Serializable {
+public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id @Column(name="id" ) 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator ="roleSequence")
+    @SequenceGenerator(name = "roleSequence", sequenceName="ES_ROLES_ID_seq", allocationSize=1)
     private Integer id;
 
     @Column(name="type"   , nullable=false , unique=false)
     private String type; 
+    
     @ManyToMany
     @JoinTable(name="USERROLE", 
         joinColumns=@JoinColumn(name="roleId"), 
         inverseJoinColumns=@JoinColumn(name="userId") 
     )
-    private Set <User> userViaUserroleByUserid = new HashSet <User> ();
+    private Set <User> userViaUserRoleByUserId = new HashSet <User> ();
 
     public Integer getId() {
         return id;
@@ -49,18 +52,18 @@ public class RoleCodes implements Serializable {
         this.type =  type;
     }
 	
-    public Set<User> getUserViaUserroleByUserid() {
-        if (userViaUserroleByUserid == null){
-            userViaUserroleByUserid = new HashSet<User>();
+    public Set<User> getUserViaUserRoleByUserId() {
+        if (userViaUserRoleByUserId == null){
+        	userViaUserRoleByUserId = new HashSet<User>();
         }
-        return userViaUserroleByUserid;
+        return userViaUserRoleByUserId;
     }
 
-    public void setUserViaUserroleByUserid (Set<User> userViaUserroleByUserid) {
-        this.userViaUserroleByUserid = userViaUserroleByUserid;
+    public void setUserViaUserRoleByUserId (Set<User> userViaUserRoleByUserId) {
+        this.userViaUserRoleByUserId = userViaUserRoleByUserId;
     }
     	
     public void addUserViaUserroleByUserid (User element) {
-        getUserViaUserroleByUserid().add(element);
+    	getUserViaUserRoleByUserId().add(element);
     }
 }
