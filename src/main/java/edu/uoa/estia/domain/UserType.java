@@ -31,7 +31,7 @@ public class UserType implements Serializable {
     private String type; 
 
     @OneToMany (targetEntity=edu.uoa.estia.domain.User.class, fetch=FetchType.LAZY, mappedBy="type", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
-    private Set <User> userUserTypeViaType = new HashSet<User>(); 
+    private Set <User> users = new HashSet<User>(); 
     
     public UserType() {
     }
@@ -53,18 +53,18 @@ public class UserType implements Serializable {
         this.type =  type;
     }
     
-    public Set<User> getUserUserTypeViaType() {
-        if (userUserTypeViaType == null){
-        	userUserTypeViaType = new HashSet<User>();
+    public Set<User> getUsers() {
+        if (users == null){
+        	users = new HashSet<User>();
         }
-        return userUserTypeViaType;
+        return users;
     }
 
-    public void setUserUserTypeViaType(Set<User> userUserTypeViaType) {
-        this.userUserTypeViaType = userUserTypeViaType;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }	
     
-    public void addUserUserTypeViaType(User element) {
-    	getUserUserTypeViaType().add(element);
+    public void addUser(User element) {
+    	getUsers().add(element);
     }    
 }

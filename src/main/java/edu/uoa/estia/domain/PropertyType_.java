@@ -11,7 +11,7 @@ public class PropertyType_ {
 
     public static volatile SingularAttribute<PropertyType, String> type;
 
-    public static volatile SetAttribute<PropertyType, Property> propertyPropertyTypeCodeViaType;
+    public static volatile SetAttribute<PropertyType, Property> properties;
 
 
 }

@@ -19,9 +19,9 @@ public class User_ {
     public static volatile SingularAttribute<User, UserType> type;
     
     
-    public static volatile SetAttribute<User, Message> messageUserViaUserId;
-    public static volatile SetAttribute<User, Property> propertyUserViaUserId;
+    public static volatile SetAttribute<User, Message> messages;
+    public static volatile SetAttribute<User, Property> properties;
 
-    public static volatile SetAttribute<User, Role> roleViaUserRoleByRoleId;
+    public static volatile SetAttribute<User, Role> roles;
 
 }

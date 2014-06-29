@@ -55,18 +55,18 @@ public class User implements Serializable {
     @Column(name="type"  , nullable=false , unique=false, insertable=false, updatable=false)
     private java.lang.Integer type_; 
 
-    @OneToMany (targetEntity=edu.uoa.estia.domain.Message.class, fetch=FetchType.LAZY, mappedBy="userid", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
-    private Set <Message> messageUserViaUserId = new HashSet<Message>(); 
+    @OneToMany (targetEntity=edu.uoa.estia.domain.Message.class, fetch=FetchType.LAZY, mappedBy="user", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
+    private Set <Message> messages = new HashSet<Message>(); 
 
-    @OneToMany (targetEntity=edu.uoa.estia.domain.Property.class, fetch=FetchType.LAZY, mappedBy="userid", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
-    private Set <Property> propertyUserViaUserId = new HashSet<Property>(); 
+    @OneToMany (targetEntity=edu.uoa.estia.domain.Property.class, fetch=FetchType.LAZY, mappedBy="userId", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
+    private Set <Property> properties = new HashSet<Property>(); 
 
     @ManyToMany
     @JoinTable(name="USERROLE", 
         joinColumns=@JoinColumn(name="userId"), 
         inverseJoinColumns=@JoinColumn(name="roleId") 
     )
-    private Set <Role> roleViaUserRoleByRoleId = new HashSet <Role> ();
+    private Set <Role> roles = new HashSet <Role> ();
 
     public Integer getId() {
         return id;
@@ -140,49 +140,49 @@ public class User implements Serializable {
         this.type_ =  type_;
     }
 	
-    public Set<Message> getMessageUserViaUserId() {
-        if (messageUserViaUserId == null){
-        	messageUserViaUserId = new HashSet<Message>();
+    public Set<Message> getMessages() {
+        if (messages == null){
+        	messages = new HashSet<Message>();
         }
-        return messageUserViaUserId;
+        return messages;
     }
 
-    public void setMessageUserViaUserId (Set<Message> messageUserViaUserId) {
-        this.messageUserViaUserId = messageUserViaUserId;
+    public void setMessages (Set<Message> messages) {
+        this.messages = messages;
     }	
     
-    public void addMessageUserViaUserid (Message element) {
-    	    getMessageUserViaUserId().add(element);
+    public void addMessage (Message element) {
+    	getMessages().add(element);
     }
     
-    public Set<Property> getPropertyUserViaUserId() {
-        if (propertyUserViaUserId == null){
-        	propertyUserViaUserId = new HashSet<Property>();
+    public Set<Property> getProperties() {
+        if (properties == null){
+        	properties = new HashSet<Property>();
         }
-        return propertyUserViaUserId;
+        return properties;
     }
 
-    public void setPropertyUserViaUserId (Set<Property> propertyUserViaUserId) {
-        this.propertyUserViaUserId = propertyUserViaUserId;
+    public void setProperties (Set<Property> properties) {
+        this.properties = properties;
     }	
     
-    public void addPropertyUserViaUserid (Property element) {
-    	    getPropertyUserViaUserId().add(element);
+    public void addProperty(Property element) {
+    	getProperties().add(element);
     }
     
-    public Set<Role> getRoleViaUserRoleByRoleId() {
-        if (roleViaUserRoleByRoleId == null){
-        	roleViaUserRoleByRoleId = new HashSet<Role>();
+    public Set<Role> getRoles() {
+        if (roles == null){
+        	roles = new HashSet<Role>();
         }
-        return roleViaUserRoleByRoleId;
+        return roles;
     }
 
-    public void setRoleViaUserRoleByRoleId (Set<Role> roleViaUserRoleByRoleId) {
-        this.roleViaUserRoleByRoleId = roleViaUserRoleByRoleId;
+    public void setRoles (Set<Role> roles) {
+        this.roles = roles;
     }
     	
-    public void addRoleViaUserRoleByRoleId (Role element) {
-    	getRoleViaUserRoleByRoleId().add(element);
+    public void addRole(Role element) {
+    	getRoles().add(element);
     }
 	
 }

@@ -31,7 +31,7 @@ public class PropertyType implements Serializable {
     private String type; 
 
     @OneToMany (targetEntity=edu.uoa.estia.domain.Property.class, fetch=FetchType.LAZY, mappedBy="type", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
-    private Set <Property> propertyPropertyTypeCodeViaType = new HashSet<Property>(); 
+    private Set <Property> properties = new HashSet<Property>(); 
 
     public Integer getId() {
         return id;
@@ -49,18 +49,18 @@ public class PropertyType implements Serializable {
         this.type =  type;
     }
 	
-    public Set<Property> getPropertyPropertyTypeCodeViaType() {
-        if (propertyPropertyTypeCodeViaType == null){
-        	propertyPropertyTypeCodeViaType = new HashSet<Property>();
+    public Set<Property> getProperties() {
+        if (properties == null){
+        	properties = new HashSet<Property>();
         }
-        return propertyPropertyTypeCodeViaType;
+        return properties;
     }
 
-    public void setPropertyPropertyTypeCodeViaType (Set<Property> propertyPropertyTypeCodeViaType) {
-        this.propertyPropertyTypeCodeViaType = propertyPropertyTypeCodeViaType;
+    public void setProperties (Set<Property> properties) {
+        this.properties = properties;
     }	
     
-    public void addPropertyPropertytypecodesViaType (Property element) {
-    	getPropertyPropertyTypeCodeViaType().add(element);
+    public void addProperty (Property element) {
+    	getProperties().add(element);
     }
 }

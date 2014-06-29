@@ -12,8 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -23,7 +26,8 @@ public class Property implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id @Column(name="id" ) 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator ="propertySequence")
+    @SequenceGenerator(name = "propertySequence", sequenceName="Property_id_seq", allocationSize=1)
     private Integer id;
 
     @ManyToOne (fetch=FetchType.LAZY , optional=false)
@@ -35,13 +39,20 @@ public class Property implements Serializable {
 
     @ManyToOne (fetch=FetchType.LAZY , optional=false)
     @JoinColumn(name="userId", referencedColumnName = "id" , nullable=false , unique=false , insertable=true, updatable=true) 
-    private User userid;  
+    private User user;  
 
     @Column(name="userId"  , nullable=false , unique=false, insertable=false, updatable=false)
-    private Integer userid_;
+    private Integer userId;
 
-    @OneToMany (targetEntity=edu.uoa.estia.domain.Message.class, fetch=FetchType.LAZY, mappedBy="propertyid", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
-    private Set <Message> messagePropertyViaPropertyid = new HashSet<Message>(); 
+    @OneToMany (targetEntity=edu.uoa.estia.domain.Message.class, fetch=FetchType.LAZY, mappedBy="property", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
+    private Set <Message> messages = new HashSet<Message>(); 
+    
+    @ManyToMany
+    @JoinTable(name="PROPERTYSTATUS", 
+        joinColumns=@JoinColumn(name="propertyId"), 
+        inverseJoinColumns=@JoinColumn(name="propertyStatus") 
+    )
+    private Set <PropertyStatus> propertyStatus = new HashSet <PropertyStatus> ();    
 
     public Integer getId() {
         return id;
@@ -68,35 +79,35 @@ public class Property implements Serializable {
         this.type_ =  type;
     }
 	
-    public User getUserid () {
-    	return userid;
+    public User getUser() {
+    	return user;
     }
 	
-    public void setUserid (User userid) {
-    	this.userid = userid;
+    public void setUser (User user) {
+    	this.user = user;
     }
 
-    public Integer getUserid_() {
-        return userid_;
+    public Integer getUserId() {
+        return userId;
     }
 	
-    public void setUserid_ (Integer userid) {
-        this.userid_ =  userid;
+    public void setUserId (Integer userId) {
+        this.userId =  userId;
     }
 	
-    public Set<Message> getMessagePropertyViaPropertyid() {
-        if (messagePropertyViaPropertyid == null){
-            messagePropertyViaPropertyid = new HashSet<Message>();
+    public Set<Message> getMessages() {
+        if (messages == null){
+        	messages = new HashSet<Message>();
         }
-        return messagePropertyViaPropertyid;
+        return messages;
     }
 
-    public void setMessagePropertyViaPropertyid (Set<Message> messagePropertyViaPropertyid) {
-        this.messagePropertyViaPropertyid = messagePropertyViaPropertyid;
+    public void setMessages (Set<Message> messages) {
+        this.messages = messages;
     }	
     
-    public void addMessagePropertyViaPropertyid (Message element) {
-    	    getMessagePropertyViaPropertyid().add(element);
+    public void addMessage (Message element) {
+    	getMessages().add(element);
     }
     
 }

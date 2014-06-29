@@ -11,6 +11,6 @@ public class Role_ {
 
     public static volatile SingularAttribute<Role, String> type;
 
-    public static volatile SetAttribute<Role, User> userViaUserRoleByUserId;
+    public static volatile SetAttribute<Role, User> users;
 
 }

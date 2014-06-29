@@ -49,7 +49,7 @@ public class UserRepositoryTest  {
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(roleRepository.findByType("Seller"));
 		roles.add(roleRepository.findByType("Lessor"));
-		user.setRoleViaUserRoleByRoleId(roles);
+		user.setRoles(roles);
 		return user;
 	}
 
@@ -66,7 +66,7 @@ public class UserRepositoryTest  {
 	@Test
 	public void testRoleUserJoin() {
 		User user = userRepository.findByUsername("estiauser");
-		Set<Role> roles = user.getRoleViaUserRoleByRoleId();
+		Set<Role> roles = user.getRoles();
 		for (Role role : roles) {
 			Assert.assertEquals("Admin", role.getType());
 		}

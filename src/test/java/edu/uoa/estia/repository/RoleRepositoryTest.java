@@ -10,7 +10,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.uoa.estia.domain.PropertyStatus;
 import edu.uoa.estia.domain.Role;
 import edu.uoa.estia.domain.User;
 
@@ -42,9 +41,9 @@ public class RoleRepositoryTest  {
 	}
 	
 	@Test
-	public void testRoleUserJoin() {
+	public void testUserJoin() {
 		Role adminRole = roleRepository.findByType("Admin");
-		Set<User> users = adminRole.getUserViaUserRoleByUserId();
+		Set<User> users = adminRole.getUsers();
 		for (User user : users) {
 			Assert.assertEquals("estiauser", user.getFirstName());
 		}

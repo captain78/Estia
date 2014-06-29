@@ -13,8 +13,9 @@ public class Property_ {
     public static volatile SingularAttribute<Property, PropertyType> type;
     public static volatile SingularAttribute<Property, Integer> type_;
 
-    public static volatile SingularAttribute<Property, User> userid;
-    public static volatile SingularAttribute<Property, Integer> userid_;
+    public static volatile SingularAttribute<Property, User> user;
+    public static volatile SingularAttribute<Property, Integer> userId;
 
-    public static volatile SetAttribute<Property, Message> messagePropertyViaPropertyid;
+    public static volatile SetAttribute<Property, Message> messages;
+    public static volatile SetAttribute<Property, PropertyStatus> propertyStatus;
 }

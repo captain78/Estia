@@ -34,7 +34,7 @@ public class Role implements Serializable {
         joinColumns=@JoinColumn(name="roleId"), 
         inverseJoinColumns=@JoinColumn(name="userId") 
     )
-    private Set <User> userViaUserRoleByUserId = new HashSet <User> ();
+    private Set <User> users = new HashSet <User> ();
 
     public Integer getId() {
         return id;
@@ -52,18 +52,18 @@ public class Role implements Serializable {
         this.type =  type;
     }
 	
-    public Set<User> getUserViaUserRoleByUserId() {
-        if (userViaUserRoleByUserId == null){
-        	userViaUserRoleByUserId = new HashSet<User>();
+    public Set<User> getUsers() {
+        if (users == null){
+        	users = new HashSet<User>();
         }
-        return userViaUserRoleByUserId;
+        return users;
     }
 
-    public void setUserViaUserRoleByUserId (Set<User> userViaUserRoleByUserId) {
-        this.userViaUserRoleByUserId = userViaUserRoleByUserId;
+    public void setUsers (Set<User> users) {
+        this.users = users;
     }
     	
-    public void addUserViaUserroleByUserid (User element) {
-    	getUserViaUserRoleByUserId().add(element);
+    public void addUser (User element) {
+    	getUsers().add(element);
     }
 }

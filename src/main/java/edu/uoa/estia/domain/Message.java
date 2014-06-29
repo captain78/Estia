@@ -32,17 +32,17 @@ public class Message implements Serializable {
 
     @ManyToOne (fetch=FetchType.LAZY )
     @JoinColumn(name="propertyId", referencedColumnName = "id" , nullable=true , unique=false , insertable=true, updatable=true) 
-    private Property propertyid;  
+    private Property property;  
 
     @Column(name="propertyId"  , nullable=true , unique=false, insertable=false, updatable=false)
-    private Integer propertyid_;
+    private Integer propertyId;
 
     @ManyToOne (fetch=FetchType.LAZY )
     @JoinColumn(name="userId", referencedColumnName = "id" , nullable=true , unique=false , insertable=true, updatable=true) 
-    private User userid;  
+    private User user;  
 
     @Column(name="userId"  , nullable=true , unique=false, insertable=false, updatable=false)
-    private Integer userid_;
+    private Integer userId;
 
     public Integer getId() {
         return id;
@@ -68,36 +68,36 @@ public class Message implements Serializable {
         this.message =  message;
     }
 	
-    public Property getPropertyid () {
-    	return propertyid;
+    public Property getProperty () {
+    	return property;
     }
 	
-    public void setPropertyid (Property propertyid) {
-    	this.propertyid = propertyid;
+    public void setProperty (Property property) {
+    	this.property = property;
     }
 
-    public Integer getPropertyid_() {
-        return propertyid_;
+    public Integer getPropertyId() {
+        return propertyId;
     }
 	
-    public void setPropertyid_ (Integer propertyid) {
-        this.propertyid_ =  propertyid;
+    public void setPropertyId (Integer propertyId) {
+        this.propertyId =  propertyId;
     }
 	
-    public User getUserid () {
-    	return userid;
+    public User getUser () {
+    	return user;
     }
 	
-    public void setUserid (User userid) {
-    	this.userid = userid;
+    public void setUser (User user) {
+    	this.user = user;
     }
 
-    public Integer getUserid_() {
-        return userid_;
+    public Integer getUserId() {
+        return userId;
     }
 	
-    public void setUserid_ (Integer userid) {
-        this.userid_ =  userid;
+    public void setUserId (Integer userId) {
+        this.userId =  userId;
     }
 	
 }

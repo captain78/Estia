@@ -12,6 +12,6 @@ public class UserType_ {
 
     public static volatile SingularAttribute<UserType, String> type;
     
-    public static volatile SetAttribute<UserType, User> userUserTypeViaType;
+    public static volatile SetAttribute<UserType, User> users;
 
 }
