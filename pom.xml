@@ -9,7 +9,7 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
-		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
+		<org.springframework-version>3.2.5.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<jetty.maven.plugin-version>8.1.15.v20140411</jetty.maven.plugin-version>
@@ -34,6 +34,35 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 				
+		<!-- Spring Security core modules -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- Spring Security ACL module -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-acl</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -98,6 +127,14 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
+		<!--  
+		<dependency>
+	       <groupId>javax.servlet</groupId>
+	       <artifactId>javax.servlet-api</artifactId>
+	       <version>3.0.1</version>
+	       <scope>provided</scope>
+	    </dependency>
+	    -->
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -109,7 +146,19 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-	
+		<dependency>
+	      <groupId>javax.servlet.jsp.jstl</groupId>
+	      <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+	      <version>1.2.1</version>
+	      <scope>runtime</scope>
+        </dependency>
+		<dependency>
+		      <groupId>org.apache.taglibs</groupId>
+		      <artifactId>taglibs-standard-jstlel</artifactId>
+		      <version>1.2.1</version>
+		      <scope>runtime</scope>
+         </dependency>
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -168,6 +217,18 @@
 							<port>9090</port>
 							<maxIdleTime>60000</maxIdleTime>
 						</connector>
+						<!-- SSL template configuration 
+						<connector implementation="org.mortbay.jetty.security.SslSocketConnector">
+                            <port>8443</port>
+                            <keystore>../certificates/server.jks</keystore>
+                            <password>password</password>
+                            <keyPassword>password</keyPassword>
+                            <truststore>../certificates/server.jks</truststore>
+                            <trustPassword>password</trustPassword>
+                            <wantClientAuth>true</wantClientAuth>
+                            <needClientAuth>false</needClientAuth>
+                        </connector>
+						 -->
 				     </connectors>
 				</configuration>
 			</plugin>
