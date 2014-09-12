@@ -15,7 +15,7 @@ import edu.uoa.estia.domain.Role;
 import edu.uoa.estia.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration (locations = {"classpath:test-data-source.xml", "classpath:test-applicationContext-data.xml"})
+@ContextConfiguration (locations = {"classpath:test-data-source.xml","classpath:test-applicationContext-data.xml"})
 @Transactional
 public class UserRepositoryTest  {
 	
@@ -28,11 +28,14 @@ public class UserRepositoryTest  {
 	@Autowired
 	private RoleRepository roleRepository;	
 	
+	private User user;
+	
 	@Test
 	public void testSave() {
-		User user = createJohnDoe();
+		user = createJohnDoe();
 		Assert.assertNull(user.getId());
 		user = userRepository.saveAndFlush(user);
+		Assert.assertEquals(1, userRepository.findAll().size());
 		Assert.assertNotNull(user);
 	}
 	
@@ -71,5 +74,6 @@ public class UserRepositoryTest  {
 			Assert.assertEquals("Admin", role.getType());
 		}
 	}
+
 
 }
