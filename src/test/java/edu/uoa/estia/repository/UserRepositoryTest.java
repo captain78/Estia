@@ -32,10 +32,12 @@ public class UserRepositoryTest  {
 	
 	@Test
 	public void testSave() {
+		int numberOfUsers = userRepository.findAll().size();
 		user = createJohnDoe();
 		Assert.assertNull(user.getId());
 		user = userRepository.saveAndFlush(user);
-		Assert.assertEquals(1, userRepository.findAll().size());
+		int expectedNumberOfUsers = numberOfUsers + 1;
+		Assert.assertEquals(expectedNumberOfUsers, userRepository.findAll().size());
 		Assert.assertNotNull(user);
 	}
 	
