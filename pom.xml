@@ -9,9 +9,12 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<org.springframework-version>3.2.5.RELEASE</org.springframework-version>
 		<org.springframework.data-version>1.2.0.RELEASE</org.springframework.data-version>
 		<org.hibernate-version>4.3.5.Final</org.hibernate-version>
+		<org.hibernate.spatial-version>4.3</org.hibernate.spatial-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<jetty.maven.plugin-version>8.1.15.v20140411</jetty.maven.plugin-version>
@@ -45,25 +48,50 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${org.springframework.data-version}</version>
 		</dependency>
+
+		<!-- Spring JDBC Support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
 		<!-- Hibernate core -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${org.hibernate-version}</version>
 		</dependency>
+
 		<!-- Hibernate JPA entity manager -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${org.hibernate-version}</version>
 		</dependency>
+
+		<!-- Hibernate Spatial -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-spatial</artifactId>
+			<version>${org.hibernate.spatial-version}</version>
+		</dependency>
+		
+		<!-- PostGIS jdbc extensions -->
+		<dependency>
+			<groupId>org.postgis</groupId>
+			<artifactId>postgis-jdbc</artifactId>
+			<version>1.5.2</version>
+		</dependency>
+		
 		<!-- Postgresql JDBC Driver -->
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>9.1-901-1.jdbc4</version>
-			<scope>test</scope>
+			<!-- <scope>test</scope> -->
 		</dependency>
+
 		<!-- Data Related Dependencies -->
 
 		<!-- Spring Security core modules -->
@@ -199,14 +227,24 @@
 			<version>${org.springframework-version}</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<version>1.1.6.RELEASE</version>
-		</dependency>
-        -->
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-test</artifactId> 
+			<version>1.1.6.RELEASE</version> </dependency> -->
+
 	</dependencies>
+
+	<!-- Hibernate Spatial and GeoTools repositories -->
+	<repositories>
+		<repository>
+			<id>OSGEO GeoTools repo</id>
+			<url>http://download.osgeo.org/webdav/geotools</url>
+		</repository>
+		<repository>
+			<id>Hibernate Spatial repo</id>
+			<url>http://www.hibernatespatial.org/repository</url>
+		</repository>
+
+	</repositories>
+
 	<build>
 		<plugins>
 			<plugin>

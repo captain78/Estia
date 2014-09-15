@@ -11,25 +11,19 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.uoa.estia.domain.Role;
-import edu.uoa.estia.domain.User;
+import edu.uoa.estia.domain.Akinita;
+
+import com.vividsolutions.jts.geom.Point;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration (locations = {"classpath:test-applicationContext-data.xml"})
 @Transactional
-public class UserRepositoryTest  {
+public class AkinitaRepositoryTest {
 	
 	@Autowired
-	private UserRepository userRepository;
+	private AkinitaRepository akinitaRepository;
 	
-	@Autowired
-	private UserTypeRepository userTypeRepository;
-	
-	@Autowired
-	private RoleRepository roleRepository;	
-	
-	private User user;
-	
+	/*
 	@Test
 	public void testSave() {
 		int numberOfUsers = userRepository.findAll().size();
@@ -62,20 +56,16 @@ public class UserRepositoryTest  {
 	public void testFindAll() {
 		Assert.assertEquals(1, userRepository.findAll().size());
 	}
+	*/
 	
 	@Test
-	public void testFindByUsername() {
-		Assert.assertNotNull(userRepository.findByUsername("estiauser"));
+	public void testFindByIdioktitis() {
+		Akinita ak = akinitaRepository.findByIdioktitis("Alkionis ke Monterno Theatro");
+		Assert.assertNotNull(ak);
+		Point topo = ak.getTopothesia();
+	    Assert.assertNotNull(topo);
 	}
 	
-	@Test
-	public void testRoleUserJoin() {
-		User user = userRepository.findByUsername("estiauser");
-		Set<Role> roles = user.getRoles();
-		for (Role role : roles) {
-			Assert.assertEquals("Admin", role.getType());
-		}
-	}
 
 
 }
