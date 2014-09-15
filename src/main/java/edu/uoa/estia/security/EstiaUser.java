@@ -6,28 +6,27 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Entity;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
 import edu.uoa.estia.domain.Role;
 import edu.uoa.estia.domain.User;
 
-//@Component
 public class EstiaUser implements Serializable, UserDetails, CredentialsContainer {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4510285626444363383L;
 	private User domainUsr;
 	private String pwdCopy;
 	private Set<GrantedAuthority> authorities;
 	 
 	public EstiaUser(User usr){
 		domainUsr = usr;
-		domainUsr.getType().getType();
-		if(usr!=null) pwdCopy = usr.getPassword();
+		if(usr!=null)
+			pwdCopy = usr.getPassword();
 	}
 	
 	public User getDomainUser(){

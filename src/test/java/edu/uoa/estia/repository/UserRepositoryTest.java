@@ -16,7 +16,7 @@ import edu.uoa.estia.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration (locations = {"classpath:test-applicationContext-data.xml"})
-@Transactional
+//@Transactional
 public class UserRepositoryTest  {
 	
 	@Autowired
@@ -28,12 +28,12 @@ public class UserRepositoryTest  {
 	@Autowired
 	private RoleRepository roleRepository;	
 	
-	private User user;
+	private final org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder encoder = new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder();
 	
 	@Test
 	public void testSave() {
 		int numberOfUsers = userRepository.findAll().size();
-		user = createJohnDoe();
+		User user = createJohnDoe();
 		Assert.assertNull(user.getId());
 		user = userRepository.saveAndFlush(user);
 		int expectedNumberOfUsers = numberOfUsers + 1;
@@ -46,11 +46,11 @@ public class UserRepositoryTest  {
 		user.setFirstName("John");
 		user.setLastName("Doe");
 		user.setUsername("johndoe");
-		user.setPassword("johndoe");
+		// ALWAYS ENCODE PASSWORD ON CREATION !!!!
+		user.setPassword(encoder.encode("johndoe"));
 		user.setEmail("johndoe@gmail.com");
 		user.setTelephone("+447123456789");
 		user.setType(userTypeRepository.findByType("Enabled"));
-
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(roleRepository.findByType("Seller"));
 		roles.add(roleRepository.findByType("Lessor"));
