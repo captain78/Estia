@@ -49,7 +49,7 @@ public class UserRepositoryTest  {
 		user.setPassword("johndoe");
 		user.setEmail("johndoe@gmail.com");
 		user.setTelephone("+447123456789");
-		user.setType(userTypeRepository.findByType("Active"));
+		user.setType(userTypeRepository.findByType("Enabled"));
 
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(roleRepository.findByType("Seller"));

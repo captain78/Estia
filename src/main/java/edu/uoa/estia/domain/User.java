@@ -19,11 +19,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
 @Entity
 @Table (name="Users")
 public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
+   
+	private static final long serialVersionUID = 1L;
 
     @Id @Column(name="id" ) 
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator ="userSequence")
@@ -48,7 +48,7 @@ public class User implements Serializable {
     @Column(name="password"   , nullable=true , unique=false)
     private String password; 
 
-    @ManyToOne (fetch=FetchType.LAZY , optional=false)
+    @ManyToOne (fetch=FetchType.EAGER , optional=false)
     @JoinColumn(name="type", referencedColumnName = "id" , nullable=false , unique=false , insertable=true, updatable=true) 
     private UserType type;  
 
@@ -61,13 +61,13 @@ public class User implements Serializable {
     @OneToMany (targetEntity=edu.uoa.estia.domain.Property.class, fetch=FetchType.LAZY, mappedBy="userId", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
     private Set <Property> properties = new HashSet<Property>(); 
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="USERROLE", 
         joinColumns=@JoinColumn(name="userId"), 
         inverseJoinColumns=@JoinColumn(name="roleId") 
     )
-    private Set <Role> roles = new HashSet <Role> ();
-
+    private Set<Role> roles = new HashSet<Role>();
+    
     public Integer getId() {
         return id;
     }

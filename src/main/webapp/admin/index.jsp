@@ -48,8 +48,8 @@
 					<td><sec:authentication property="principal.accountNonLocked" /></td>
 				</tr>
 				<tr>
-					<td>&lt;sec:authentication property='principal.email' /&gt;</td>
-					<td><sec:authentication property="principal.email" /></td>
+					<td>&lt;sec:authentication property='principal.domainuser.email' /&gt;</td>
+					<td><sec:authentication property="principal.DomainUser.email" /></td>
 				</tr>
 			</sec:authorize>
 		</table>

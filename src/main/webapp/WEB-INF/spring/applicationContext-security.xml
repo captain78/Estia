@@ -53,7 +53,9 @@
         peter/opal
     -->
     <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-
+   
+    <beans:bean id="estiaUserDetailsService" class="edu.uoa.estia.security.EstiaUserDetailsService"/>
+    
     <authentication-manager>
         <!-- 
         <authentication-provider>
@@ -66,8 +68,9 @@
             </user-service>
         </authentication-provider>
          -->
-        <authentication-provider>
-	        <jdbc-user-service data-source-ref="dataSource" users-by-username-query="select u.username, u.password, (lower(ut.type)='active') from users u, usertypecodes ut where u.type = ut.id and u.username=?" authorities-by-username-query="select u.username, r.type from users u, userrole ur ,rolecodes r where u.id = ur.userid and ur.roleid = r.id and u.username =?" />
+        <authentication-provider user-service-ref="estiaUserDetailsService">
+	       <!-- <jdbc-user-service data-source-ref="dataSource" users-by-username-query="select u.username, u.password, (lower(ut.type)='enabled') from users u, usertypecodes ut where u.type = ut.id and u.username=?" authorities-by-username-query="select u.username, r.type from users u, userrole ur ,rolecodes r where u.id = ur.userid and ur.roleid = r.id and u.username =?" /> --> 
+	       
 	    </authentication-provider>
     </authentication-manager>
 
