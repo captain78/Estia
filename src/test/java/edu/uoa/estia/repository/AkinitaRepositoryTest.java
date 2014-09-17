@@ -60,6 +60,7 @@ public class AkinitaRepositoryTest {
 	
 	@Test
 	public void testFindByIdioktitis() {
+		Akinita a = new Akinita();
 		Akinita ak = akinitaRepository.findByIdioktitis("Alkionis ke Monterno Theatro");
 		Assert.assertNotNull(ak);
 		Point topo = ak.getTopothesia();

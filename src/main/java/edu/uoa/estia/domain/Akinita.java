@@ -1,9 +1,12 @@
 package edu.uoa.estia.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 import com.vividsolutions.jts.geom.Point;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -12,7 +15,8 @@ import org.hibernate.annotations.Type;
  * 
  */
 @Entity
-@NamedQuery(name="Akinita.findAll", query="SELECT a FROM Akinita a")
+@Table (name="Akinita")
+//@NamedQuery(name="Akinita.findAll", query="SELECT a FROM Akinita a")
 public class Akinita implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -25,6 +29,8 @@ public class Akinita implements Serializable {
 
 	private String idioktitis;
 
+
+	@Column(columnDefinition="Geometry", name="topothesia")
 	@Type(type="org.hibernate.spatial.GeometryType")
 	private Point topothesia;
 

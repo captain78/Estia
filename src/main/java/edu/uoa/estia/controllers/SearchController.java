@@ -12,22 +12,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import edu.uoa.estia.domain.Property;
-import edu.uoa.estia.service.PropertyManagementService;
+import edu.uoa.estia.domain.Akinita;
+import edu.uoa.estia.service.SearchService;
 
 @Controller
-@RequestMapping("/services/properties")
-public class PropertyManagementController {
+@RequestMapping("/services/search")
+public class SearchController {
 
-	private static Logger LOG = LoggerFactory.getLogger(PropertyManagementController.class);
+    private static Logger LOG = LoggerFactory.getLogger(SearchController.class);
 
     @Autowired
-    private PropertyManagementService propertyService;
+    private SearchService searchService;
 
     @RequestMapping( method = RequestMethod.GET, value = "/all")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public List<Property> getAllProperties() {
-        return propertyService.findAll();
+    public List<Akinita> getAll() {
+        return searchService.findAll();
     }
+    
 }

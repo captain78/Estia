@@ -284,7 +284,7 @@
 		});
 		// add the layers to the map Object
 		//map.addLayer(oria_dhmwn_kallikraths);
-		map.addLayer(oria_dhmwn_kallikraths_WFS);
+		//map.addLayer(oria_dhmwn_kallikraths_WFS);
 		//map.addLayer(oria_diamerismatwn);
 		//map.addLayer(oria_nomwn);
 		//map.addLayer(ethnika_parka);

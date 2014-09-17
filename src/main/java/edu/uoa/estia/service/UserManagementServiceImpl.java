@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import edu.uoa.estia.domain.User;
 import edu.uoa.estia.repository.UserRepository;
 
-@Component
+@Component("UserManagementServiceImpl")
 public class UserManagementServiceImpl implements UserManagementService {
 
 	final UserRepository userRepo;

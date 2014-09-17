@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd 
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     
-    <context:component-scan base-package="edu.uoa.estia.repository"/>
+    <context:component-scan base-package="edu.uoa.estia"/>
 
     <jpa:repositories base-package="edu.uoa.estia.repository"/>
 
@@ -33,15 +33,16 @@
             </props>
         </property>
     </bean>
-     <!-- 
+     <!--  Apache commons-dbcp based data source -->
+     <!--  
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.postgresql.Driver" />
         <property name="url" value="jdbc:postgresql://localhost:5432/estia" />
         <property name="username" value="estiauser" />
         <property name="password" value="estiapwd" />
     </bean>
-     -->
-        
+    -->
+    
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver" />
         <property name="url" value="jdbc:postgresql://localhost:5432/estia" />
