@@ -30,8 +30,10 @@ public class UserType implements Serializable {
     @Column(name="type"   , nullable=true , unique=false)
     private String type; 
 
+    /* This seems to lead to out.ofmemory loops
     @OneToMany (targetEntity=edu.uoa.estia.domain.User.class, fetch=FetchType.LAZY, mappedBy="type", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
     private Set <User> users = new HashSet<User>(); 
+    */
     
     public UserType() {
     }
@@ -53,6 +55,8 @@ public class UserType implements Serializable {
         this.type =  type;
     }
     
+    /*
+    
     public Set<User> getUsers() {
         if (users == null){
         	users = new HashSet<User>();
@@ -66,5 +70,6 @@ public class UserType implements Serializable {
     
     public void addUser(User element) {
     	getUsers().add(element);
-    }    
+    } 
+    */   
 }

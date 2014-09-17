@@ -19,6 +19,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 @Table (name="Users")
 public class User implements Serializable {
@@ -45,6 +47,7 @@ public class User implements Serializable {
     @Column(name="telephone"   , nullable=false , unique=false)
     private String telephone; 
 
+    @JsonIgnore
     @Column(name="password"   , nullable=true , unique=false)
     private String password; 
 
@@ -55,12 +58,15 @@ public class User implements Serializable {
     @Column(name="type"  , nullable=false , unique=false, insertable=false, updatable=false)
     private java.lang.Integer type_; 
 
+    @JsonIgnore
     @OneToMany (targetEntity=edu.uoa.estia.domain.Message.class, fetch=FetchType.LAZY, mappedBy="user", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
     private Set <Message> messages = new HashSet<Message>(); 
 
+    @JsonIgnore
     @OneToMany (targetEntity=edu.uoa.estia.domain.Property.class, fetch=FetchType.LAZY, mappedBy="userId", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
     private Set <Property> properties = new HashSet<Property>(); 
 
+    @JsonIgnore
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="USERROLE", 
         joinColumns=@JoinColumn(name="userId"), 

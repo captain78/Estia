@@ -17,6 +17,7 @@
 		<org.hibernate.spatial-version>4.3</org.hibernate.spatial-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<jackson.version>1.9.12</jackson.version>
 		<jetty.maven.plugin-version>8.1.15.v20140411</jetty.maven.plugin-version>
 	</properties>
 	<dependencies>
@@ -130,6 +131,13 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>
 
+        <!-- Jackson JSON Mapper -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
