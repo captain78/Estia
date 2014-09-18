@@ -5,7 +5,14 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vividsolutions.jts.geom.Point;
+
+import edu.uoa.estia.utils.GeometryUtils;
+import edu.uoa.estia.utils.JTSGeomToGeoJSONDeserializer;
+import edu.uoa.estia.utils.JTSGeomToGeoJSONSerializer;
 
 import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.GenericGenerator;
@@ -17,7 +24,6 @@ import org.hibernate.annotations.Type;
  */
 @Entity
 @Table (name="Akinita")
-//@NamedQuery(name="Akinita.findAll", query="SELECT a FROM Akinita a")
 public class Akinita implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -34,14 +40,6 @@ public class Akinita implements Serializable {
 	@Column(columnDefinition="Geometry", name="topothesia")
 	@Type(type="org.hibernate.spatial.GeometryType")
 	private Point topothesia;
-	
-	/*
-	@Column(name="topothesia")
-	@ColumnTransformer(
-		      read="ST_AsGeoJSON(topothesia)", 
-		      write="ST_GeomFromGeoJSON(?)")
-	private String topothesia;
-	*/
     
 	public Akinita() {
 	}
@@ -70,15 +68,28 @@ public class Akinita implements Serializable {
 		this.idioktitis = idioktitis;
 	}
 
+	@JsonProperty("topothesia")
+	@JsonSerialize(using = JTSGeomToGeoJSONSerializer.class)
 	public Point getTopothesia() {
 		return this.topothesia;
 	}
-
+	
+	@JsonProperty("topothesia")
+	@JsonDeserialize(using = JTSGeomToGeoJSONDeserializer.class)
 	public void setTopothesia(Point topothesia) {
 		this.topothesia = topothesia;
 	}
 	
 	/*
+	 * Another, less flexible approach
+	 * 
+
+	@Column(name="topothesia")
+	@ColumnTransformer(
+		      read="ST_AsGeoJSON(topothesia)", 
+		      write="ST_GeomFromGeoJSON(?)")
+	private String topothesia;
+	
 	public String getTopothesiaGeoJSON() {
 		return this.topothesiaGeoJSON;
 	}
