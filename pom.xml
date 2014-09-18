@@ -17,7 +17,7 @@
 		<org.hibernate.spatial-version>4.3</org.hibernate.spatial-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
-		<jackson.version>1.9.12</jackson.version>
+		<jackson.version>2.4.2</jackson.version>
 		<jetty.maven.plugin-version>8.1.15.v20140411</jetty.maven.plugin-version>
 	</properties>
 	<dependencies>
@@ -77,14 +77,14 @@
 			<artifactId>hibernate-spatial</artifactId>
 			<version>${org.hibernate.spatial-version}</version>
 		</dependency>
-		
+
 		<!-- PostGIS jdbc extensions -->
 		<dependency>
 			<groupId>org.postgis</groupId>
 			<artifactId>postgis-jdbc</artifactId>
 			<version>1.5.2</version>
 		</dependency>
-		
+
 		<!-- Postgresql JDBC Driver -->
 		<dependency>
 			<groupId>postgresql</groupId>
@@ -131,13 +131,31 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>
 
-        <!-- Jackson JSON Mapper -->
+		<!-- Jackson 2.x JSON Mapper -->
+		<!-- 
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-		
+		 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>

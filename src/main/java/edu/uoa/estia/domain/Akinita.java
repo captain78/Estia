@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 import com.vividsolutions.jts.geom.Point;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
