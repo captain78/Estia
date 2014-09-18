@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vividsolutions.jts.geom.Point;
 
+import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -28,11 +30,19 @@ public class Akinita implements Serializable {
 
 	private String idioktitis;
 
-
+    @JsonIgnore
 	@Column(columnDefinition="Geometry", name="topothesia")
 	@Type(type="org.hibernate.spatial.GeometryType")
 	private Point topothesia;
-
+	
+	/*
+	@Column(name="topothesia")
+	@ColumnTransformer(
+		      read="ST_AsGeoJSON(topothesia)", 
+		      write="ST_GeomFromGeoJSON(?)")
+	private String topothesia;
+	*/
+    
 	public Akinita() {
 	}
 
@@ -67,5 +77,15 @@ public class Akinita implements Serializable {
 	public void setTopothesia(Point topothesia) {
 		this.topothesia = topothesia;
 	}
+	
+	/*
+	public String getTopothesiaGeoJSON() {
+		return this.topothesiaGeoJSON;
+	}
+
+	public void setTopothesiaGeoJSON(String topothesiaGeoJSON) {
+		this.topothesiaGeoJSON = topothesiaGeoJSON;
+	}
+	*/
 
 }
