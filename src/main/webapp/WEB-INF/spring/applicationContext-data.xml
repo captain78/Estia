@@ -1,56 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd 
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    
-    <context:component-scan base-package="edu.uoa.estia.repository"/>
 
-    <jpa:repositories base-package="edu.uoa.estia.repository"/>
+	<context:component-scan base-package="edu.uoa.estia" />
 
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="persistenceUnitName" value="estia"/>
-        <property name="packagesToScan" value="edu.uoa.estia.domain" />
-        <!--   property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"  / -->
-        <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <!--  property name="showSql" value="false"/ -->
+	<jpa:repositories base-package="edu.uoa.estia.repository" />
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceUnitName" value="estia" />
+		<property name="packagesToScan" value="edu.uoa.estia.domain" />
+		<!-- property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" 
+			/ -->
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<!-- property name="showSql" value="false"/ -->
 				<property name="database" value="POSTGRESQL" />
-            </bean>
-        </property>
-        <property name="jpaProperties">
-            <props>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">true</prop>
-                <!-- <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>  -->
-                <prop key="hibernate.dialect">org.hibernate.spatial.dialect.postgis.PostgisDialect</prop>
-            </props>
-        </property>
-    </bean>
-     <!-- 
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://localhost:5432/estia" />
-        <property name="username" value="estiauser" />
-        <property name="password" value="estiapwd" />
-    </bean>
-     -->
-        
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://localhost:5432/estia" />
-        <property name="username" value="estiauser" />
-        <property name="password" value="estiapwd" />
-    </bean>
- 
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" >
-        <property name="entityManagerFactory" ref="entityManagerFactory"  />
-    </bean>    
+			</bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop> -->
+				<prop key="hibernate.dialect">org.hibernate.spatial.dialect.postgis.PostgisDialect
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close"> <property name="driverClassName" value="org.postgresql.Driver" 
+		/> <property name="url" value="jdbc:postgresql://localhost:5432/estia" /> 
+		<property name="username" value="estiauser" /> <property name="password" 
+		value="estiapwd" /> </bean> -->
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		
+		<property name="driverClassName" value="${db.driverClassName}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+		<!-- <property name="driverClassName" value="org.postgresql.Driver" /> 
+			<property name="url" value="jdbc:postgresql://localhost:5432/estia" /> <property 
+			name="username" value="estiauser" /> <property name="password" value="estiapwd" 
+			/> -->
+	</bean>
+
+	<!-- enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
 
 </beans>

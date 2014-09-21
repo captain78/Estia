@@ -20,6 +20,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -54,8 +55,10 @@ public class User implements Serializable {
 
     @ManyToOne (fetch=FetchType.EAGER , optional=false)
     @JoinColumn(name="type", referencedColumnName = "id" , nullable=false , unique=false , insertable=true, updatable=true) 
+    @JsonManagedReference
     private UserType type;  
 
+    @JsonIgnore
     @Column(name="type"  , nullable=false , unique=false, insertable=false, updatable=false)
     private java.lang.Integer type_; 
 

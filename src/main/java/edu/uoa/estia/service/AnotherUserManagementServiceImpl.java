@@ -12,28 +12,25 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.uoa.estia.controllers.UserManagementController;
 import edu.uoa.estia.domain.User;
 import edu.uoa.estia.repository.UserRepository;
 
-@Primary // Because this is the default service implementation
-@Named("UserManagementServiceImpl") // Equivelant to @Component but standard JSR-330
-                                    // the name property to be used if caller wants to specifically inject this implementation
+@Named("AnotherUserManagementServiceImpl")
 @Service
-public class UserManagementServiceImpl implements UserManagementService {
+public class AnotherUserManagementServiceImpl implements UserManagementService {
 
-	private static Logger LOG = LoggerFactory.getLogger(UserManagementServiceImpl.class);
-	 
+	private static Logger LOG = LoggerFactory.getLogger(AnotherUserManagementServiceImpl.class);
+	
 	final UserRepository userRepo;
 	
     @Autowired
-	public UserManagementServiceImpl(final UserRepository userRepo){
+	public AnotherUserManagementServiceImpl(final UserRepository userRepo){
 		this.userRepo = userRepo;
 	}
 	
 	@Override
 	public List<User> requestAllUsers() {
-		LOG.info("UserManagementServiceImpl. requestAllUsers()");
+		LOG.info("AnotherUserManagementServiceImpl. requestAllUsers()");
 		return userRepo.findAll();
 	}
 

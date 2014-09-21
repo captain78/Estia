@@ -28,8 +28,9 @@ public class Akinita implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="AKINITA_ID_GENERATOR", sequenceName="AKINITA_ID_SEQ")
+	@SequenceGenerator(name="AKINITA_ID_GENERATOR", sequenceName="AKINITA_ID_SEQ", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="AKINITA_ID_GENERATOR")
+	@Column(name="id", unique=true, nullable=false)
 	private Integer id;
 
 	private String dieythinsi;

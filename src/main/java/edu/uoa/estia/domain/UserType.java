@@ -15,9 +15,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity 
 @Table (name="UserTypeCodes")
-
 public class UserType implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -30,10 +31,9 @@ public class UserType implements Serializable {
     @Column(name="type"   , nullable=true , unique=false)
     private String type; 
 
-    /* This seems to lead to out.ofmemory loops
-    @OneToMany (targetEntity=edu.uoa.estia.domain.User.class, fetch=FetchType.LAZY, mappedBy="type", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
+    @OneToMany (targetEntity=edu.uoa.estia.domain.User.class, fetch=FetchType.EAGER, mappedBy="type", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
+    @JsonBackReference
     private Set <User> users = new HashSet<User>(); 
-    */
     
     public UserType() {
     }
@@ -55,8 +55,6 @@ public class UserType implements Serializable {
         this.type =  type;
     }
     
-    /*
-    
     public Set<User> getUsers() {
         if (users == null){
         	users = new HashSet<User>();
@@ -71,5 +69,5 @@ public class UserType implements Serializable {
     public void addUser(User element) {
     	getUsers().add(element);
     } 
-    */   
+       
 }

@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,15 +24,14 @@ import com.vividsolutions.jts.geom.PrecisionModel;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration (locations = {"classpath:test-applicationContext-data.xml"})
-@Transactional
+//@Transactional
 public class AkinitaRepositoryTest {
 	
 	@Autowired
 	private AkinitaRepository akinitaRepository;
 	
-	final int SRID = 3857; // This should come from the DB at init time
-    final GeometryFactory gf = new GeometryFactory(new PrecisionModel(PrecisionModel.FLOATING),SRID);
-	
+	@Value("${srid.projected}")
+    int SRID; // This should come from the DB at init time
     
 	@Test
 	public void testFindByIdioktitis() {
@@ -58,6 +58,7 @@ public class AkinitaRepositoryTest {
 	@Test
 	public void testCreateAkinito() {
 		Akinita a = new Akinita();
+		GeometryFactory gf = new GeometryFactory(new PrecisionModel(PrecisionModel.FLOATING),SRID);	
 		Point topo = gf.createPoint(new Coordinate(2643617.27110949,4578327.24184474)); // in SRID:3857
 		a.setDieythinsi("JUnit Test Διέυθυνση");
 		a.setIdioktitis("Παπαλέκας");
