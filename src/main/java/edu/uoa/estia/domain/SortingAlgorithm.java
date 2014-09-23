@@ -21,6 +21,9 @@ public class SortingAlgorithm implements Serializable {
     @SequenceGenerator(name = "sortingSequence", sequenceName="sortingAlgorithms_id_seq", allocationSize=1)
     private Integer id;
 
+    @Column(name="name"   , nullable=false , unique=false)
+    private String name; 
+    
     @Column(name="description"   , nullable=false , unique=false)
     private String description; 
 
@@ -38,6 +41,14 @@ public class SortingAlgorithm implements Serializable {
 	
     public void setDescription (String description) {
         this.description =  description;
+    }
+    
+    public String getName() {
+        return name;
+    }
+	
+    public void setName (String name) {
+        this.name =  name;
     }
 	
 }

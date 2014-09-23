@@ -28,6 +28,9 @@ public class PropertyType implements Serializable {
 
     @Column(name="type"   , nullable=true , unique=false)
     private String type; 
+    
+    @Column(name="onoma"   , nullable=true , unique=false)
+    private String onoma; 
 
     @OneToMany (targetEntity=edu.uoa.estia.domain.Property.class, fetch=FetchType.LAZY, mappedBy="type", cascade=CascadeType.REMOVE)//, cascade=CascadeType.ALL)
     private Set <Property> properties = new HashSet<Property>(); 
@@ -44,8 +47,16 @@ public class PropertyType implements Serializable {
         return type;
     }
 	
-    public void setType (String type) {
+    public void setType(String type) {
         this.type =  type;
+    }
+    
+    public String getOnoma() {
+        return onoma;
+    }
+	
+    public void setOnoma(String onoma) {
+        this.onoma =  onoma;
     }
 	
     public Set<Property> getProperties() {

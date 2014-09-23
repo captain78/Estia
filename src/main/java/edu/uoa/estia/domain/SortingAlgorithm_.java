@@ -8,6 +8,8 @@ import javax.persistence.metamodel.StaticMetamodel;
 public class SortingAlgorithm_ {
 
     public static volatile SingularAttribute<SortingAlgorithm, Integer> id;
+    
+    public static volatile SingularAttribute<SortingAlgorithm, String> name;
 
     public static volatile SingularAttribute<SortingAlgorithm, String> description;
 

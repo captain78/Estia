@@ -29,7 +29,7 @@ public class UserRepositoryTest  {
 	private RoleRepository roleRepository;	
 	
 	private final org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder encoder = new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder();
-	
+	/*
 	@Test
 	public void testSave() {
 		int numberOfUsers = userRepository.findAll().size();
@@ -41,23 +41,6 @@ public class UserRepositoryTest  {
 		Assert.assertNotNull(user);
 	}
 	
-	private User createJohnDoe() {
-		User user = new User();
-		user.setFirstName("John");
-		user.setLastName("Doe");
-		user.setUsername("johndoe");
-		// ALWAYS ENCODE PASSWORD ON CREATION !!!!
-		user.setPassword(encoder.encode("johndoe"));
-		user.setEmail("johndoe@gmail.com");
-		user.setTelephone("+447123456789");
-		user.setType(userTypeRepository.findByType("Enabled"));
-		Set<Role> roles = new HashSet<Role>();
-		roles.add(roleRepository.findByType("Seller"));
-		roles.add(roleRepository.findByType("Lessor"));
-		user.setRoles(roles);
-		return user;
-	}
-
 	@Test
 	public void testFindAll() {
 		Assert.assertEquals(1, userRepository.findAll().size());
@@ -67,15 +50,40 @@ public class UserRepositoryTest  {
 	public void testFindByUsername() {
 		Assert.assertNotNull(userRepository.findByUsername("estiauser"));
 	}
+	*/
+	
 	
 	@Test
 	public void testRoleUserJoin() {
-		User user = userRepository.findByUsername("estiauser");
-		Set<Role> roles = user.getRoles();
-		for (Role role : roles) {
-			Assert.assertEquals("Admin", role.getType());
-		}
+		User user = userRepository.findByUsername("admin");
+		userRepository.delete(user);
+	   	
+	//	Set<Role> roles = user.getRoles();
+    //	for (Role role : roles) {
+	//		Assert.assertEquals("Admin", role.getType());
+	//	}
+		
 	}
-
+    
+	
+	@Test
+	public void createJohnDoe() {
+		User user = new User();
+		user.setFirstName("'Ονομα Επισκέπτη");
+		user.setLastName("Επίθετο Επισκέπτη");
+		user.setUsername("visitor");
+		// ALWAYS ENCODE PASSWORD ON CREATION !!!!
+		user.setPassword(encoder.encode("visitor"));
+		user.setEmail("visitor@estia.gr");
+		user.setTelephone("+301234567");
+		user.setType(userTypeRepository.findByType("Enabled"));
+		Set<Role> roles = new HashSet<Role>();
+		roles.add(roleRepository.findByType("Visitor"));
+		//roles.add(roleRepository.findByType("Lessor"));
+		user.setRoles(roles);
+		userRepository.saveAndFlush(user);
+		//return user;
+	}
+    
 
 }

@@ -1,6 +1,9 @@
 package edu.uoa.estia.repository;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
@@ -12,13 +15,22 @@ import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.PrecisionModel;
 
 import edu.uoa.estia.domain.Mytable;
+import edu.uoa.estia.domain.Role;
+import edu.uoa.estia.domain.User;
 
 @ContextConfiguration (locations = {"classpath:test-applicationContext-data.xml"})
 public class GenericTests {
 
 	@Autowired
 	private MytableRepository mytableRepository;
-
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private UserTypeRepository userTypeRepository;
+	@Autowired
+	private RoleRepository roleRepository;	
+	
+    final org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder encoder = new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder();
 	final GeometryFactory gf = new GeometryFactory(new PrecisionModel(PrecisionModel.FLOATING));
 	
 	public void testSave() {
@@ -87,10 +99,27 @@ public class GenericTests {
 		long t4 = System.currentTimeMillis();
 		System.out.println("ep1 match "+(t4-t3)+"ms");
 	}
+	
+	public User createJohnDoe() {
+		User user = new User();
+		user.setFirstName("'Ονομα Διαχειριστή");
+		user.setLastName("Επίθετο Διαχειριστή");
+		user.setUsername("admin");
+		// ALWAYS ENCODE PASSWORD ON CREATION !!!!
+		user.setPassword(encoder.encode("admin"));
+		user.setEmail("admin@estia.gr");
+		user.setTelephone("+301234567");
+		user.setType(userTypeRepository.findByType("Enabled"));
+		Set<Role> roles = new HashSet<Role>();
+		roles.add(roleRepository.findByType("Admin"));
+		//roles.add(roleRepository.findByType("Lessor"));
+		user.setRoles(roles);
+		return user;
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		GenericTests gt = new GenericTests();
-		gt.testBCrypto1();
+		gt.createJohnDoe();
 	}
 
 }

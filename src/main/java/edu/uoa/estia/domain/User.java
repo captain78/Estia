@@ -31,7 +31,7 @@ public class User implements Serializable {
 
     @Id @Column(name="id" ) 
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator ="userSequence")
-    @SequenceGenerator(name = "userSequence", sequenceName="es_users_id_seq", allocationSize=1)
+    @SequenceGenerator(name = "userSequence", sequenceName="users_id_seq", allocationSize=1)
     private Integer id;
 
     @Column(name="username"   , nullable=false , unique=false)

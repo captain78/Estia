@@ -10,6 +10,8 @@ public class PropertyType_ {
     public static volatile SingularAttribute<PropertyType, Integer> id;
 
     public static volatile SingularAttribute<PropertyType, String> type;
+    
+    public static volatile SingularAttribute<PropertyType, String> onoma;
 
     public static volatile SetAttribute<PropertyType, Property> properties;
 
