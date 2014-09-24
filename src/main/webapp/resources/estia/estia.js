@@ -1,34 +1,3 @@
-<%@ page session="false"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<html>
-<head>
-
-<title>Estia Home Page</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title>Estia home page</title>
-
-<link rel="stylesheet" href="<c:url value='/resources/css/estia.css'/>"
-	type="text/css" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/resources/OpenLayers/theme/default/style.css'/>" />
-<!-- OpenLayers examples styles-->
-<link rel="stylesheet"
-	href="<c:url value='http://dev.openlayers.org/releases/OpenLayers-2.13.1/examples/style.css'/>"
-	type="text/css">
-<!-- Google V3 API-->
-<script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
-<!-- OpenLayers core js -->
-<script src="<c:url value='/resources/OpenLayers/OpenLayers.js'/>"></script>
-<script>
 	OpenLayers.ProxyHost = "../cgi-bin/proxy.cgi?url=";
 	var map, infocontrols, wfs_POST, wfs_GET, highlightlayer;
 	format = 'image/png';
@@ -76,6 +45,19 @@
 				srsName : "EPSG:3857"
 			})
 		});
+		propertiesWFS = new OpenLayers.Layer.Vector("Ακίνητα", {
+			strategies : [ new OpenLayers.Strategy.Fixed() ],
+			renderers : renderer,
+			protocol : new OpenLayers.Protocol.WFS({
+				version : "1.1.0",
+				url : "http://localhost:8090/geoserver/wfs",
+				featurePrefix : "estia",
+				featureType : "property",
+				featureNS : "http://localhost/estia",
+				geometryName : "topothesia", //type "Geometry"
+				srsName : "EPSG:3857"
+			})
+		});
 		oria_dhmwn_kallikraths_WFS = new OpenLayers.Layer.Vector(
 				"Kallikraths WFS", {
 					strategies : [ new OpenLayers.Strategy.Fixed() ],
@@ -95,6 +77,19 @@
 				"http://localhost:8090/geoserver/estia/wms", {
 					srs : 'EPSG:3857',
 					LAYERS : 'estia:akinita',
+					STYLES : '',
+					transparent : true,
+					format : format,
+				//bounds:"37.991777, 23.728375, 37.999664, 23.740434"
+				}, {
+					singleTile : true,
+					ratio : 1,
+					isBaseLayer : false
+				});
+		propertiesWMS = new OpenLayers.Layer.WMS("Ακίνητα-WMS",
+				"http://localhost:8090/geoserver/estia/wms", {
+					srs : 'EPSG:3857',
+					LAYERS : 'estia:property',
 					STYLES : '',
 					transparent : true,
 					format : format,
@@ -293,8 +288,10 @@
 		//map.addLayer(sxoleia);
 		//map.addLayer(dhmosia_kthria);
 		map.addLayer(akinita); 
+		map.addLayer(propertiesWMS);
+		map.addLayer(propertiesWFS);
 		//map.addLayer(wfs_GET);  // skip this. its not supposed to wotk with the vanilla port of the proxy.cgi to Pythno 3 (3.4.1)
-		map.addLayer(wfs_POST);
+		//map.addLayer(wfs_POST);
 		map.addControl(new OpenLayers.Control.LayerSwitcher());
 
 		// add the controls to the map Object
@@ -312,92 +309,3 @@
 			}
 		};
 	}
-</script>
-<!-- map_google (this page's code) js -->
-<script src="<c:url value='/resources/map_google.js'/>"></script>
-<!-- map_google (this page's styles) css-->
-<link rel="stylesheet" href="<c:url value='/resources/map_google.css'/>" type="text/css">
-</head>
-
-<body onload="init()">
-	<h1 id="title">Estia v0.1</h1>
-	<div id="tags">Google, api key, apikey, light</div>
-	<p id="shortdesc">Demonstrate the use of Google Maps v3 API,
-		GeoServer, PostgreSQL(+PostGIS), Apache HTTPD, Apache Tomcat,
-		OpenLayers API</p>
-	<div id="map" class="smallmap"></div>
-	<div id="docs">
-		<p>
-			<input id="animate" type="checkbox" checked="checked">Animated
-			zoom (if supported by GMaps on your device)</input>
-		</p>
-		<p>
-			If you use the Google Maps v3 API with a Google layer, you don't need
-			to include an API key. This layer only works in the spherical
-			mercator projection. See the <a href="google-v3.js" target="_blank">google-v3.js
-				source</a> to see how this is done.
-		</p>
-	</div>
-	<div id="info">
-		<h1>Greece</h1>
-		<p>Click on the map to get feature info.</p>
-		<div id="responseText"></div>
-	</div>
-	<div id="settings">
-		<h1>Settings</h1>
-		<p>Click on the map to get feature info.</p>
-		<div id="responseText">GeoServer base url:</div>
-	</div>
-	<div id="content">
-		<h1>Home Page</h1>
-		<p>Anyone can view this page.</p>
-		<p>
-			While anyone can also view the <a href="listAccounts.html">list
-				accounts</a> page, you must be authorized to post to an Account from the
-			list accounts page.
-		</p>
-		<p>
-			Your principal object is....:
-			<%=request.getUserPrincipal()%>
-		</p>
-		<sec:authorize url='/owner/index.jsp'>
-			<p>You can currently access "/owner" URLs.</p>
-		</sec:authorize>
-		<sec:authorize url='/admin/index.jsp'>
-			<p>You can currently access "/admin" URLs.</p>
-		</sec:authorize>
-
-		<p>
-			<a href="owner/index.jsp">Secure page (owner/index.jsp)</a>
-		</p>
-		<p>
-			<a href="admin/index.jsp">Extremely secure page (admin/index.jsp)</a>
-		</p>
-	</div>
-	<ul id="control">
-		<li><input type="radio" name="controlType" value="click"
-			id="click" onclick="toggleControl(this);" checked="checked" /> <label
-			for="click">Click</label></li>
-		<li><input type="radio" name="controlType" value="hover"
-			id="hover" onclick="toggleControl(this);" /> <label for="hover">Hover</label>
-		</li>
-	</ul>
-	<ul id="format">
-		<li><input type="radio" name="formatType" value="text/html"
-			id="html" onclick="toggleFormat(this);" checked="checked" /> <label
-			for="html">Show HTML Description</label></li>
-		<li><input type="radio" name="formatType"
-			value="application/vnd.ogc.gml" id="highlight"
-			onclick="toggleFormat(this);" /> <label for="highlight">Highlight
-				Feature on Map</label></li>
-	</ul>
-	<ul id="layers">
-		<li><input type="radio" name="layerSelection" value="Specified"
-			id="Specified" onclick="toggleLayers(this);" checked="checked" /> <label
-			for="Specified">Get water body info</label></li>
-		<li><input type="radio" name="layerSelection" value="Auto"
-			id="Auto" onclick="toggleLayers(this);" /> <label for="Auto">Get
-				info for visible layers</label></li>
-	</ul>
-</body>
-</html>

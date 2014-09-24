@@ -14,7 +14,7 @@
             if (element.value == key && element.checked) {
                 control.activate();
             } else {
-                control.deactivate();
+                control.deactivate(); 
             }
         }
     }

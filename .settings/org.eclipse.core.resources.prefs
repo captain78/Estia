@@ -1,4 +1,9 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/layouts/standard/footer.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/layouts/standard/header.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/home/contentNotSignedIn.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/home/contentSignedIn.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/home/header.jsp=UTF-8
 encoding//src/test/java/edu/uoa/estia/repository/AkinitaRepositoryTest.java=UTF-8
 encoding//src/test/java/edu/uoa/estia/repository/GenericTests.java=UTF-8
 encoding//src/test/java/edu/uoa/estia/repository/MytableRepositoryTest.java=UTF-8

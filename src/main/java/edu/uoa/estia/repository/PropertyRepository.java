@@ -13,6 +13,8 @@ import edu.uoa.estia.domain.PropertyType;
 @Transactional(readOnly = true) 
 public interface PropertyRepository extends JpaRepository<Property, Integer> {
 
+	Property findById(Integer id);
+
 	Property findByUserId(Integer userid);
 	
 	Property findByType(PropertyType type);
