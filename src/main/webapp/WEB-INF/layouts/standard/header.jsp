@@ -11,15 +11,14 @@
 		</sec:authorize>
 		
 		<sec:authorize access="isAuthenticated()">
-		             <sec:authentication property="principal.username" />
-		             <!-- 
-		     		<li><a href="<c:url value="/members/${account.profileId}" />"><c:out value="${account.firstName}" /></a></li>
-					<li><a href="<c:url value="/invite" />">Invite</a></li>
+		            <!-- Create a scoped variable for usage in this page -->
+		            <sec:authentication var="principal" property="principal" /> 
+		     		<%=request.getUserPrincipal()%>
+		     		<li><a href="<c:url value="/invite" />">Invite</a></li>
 					<li><a href="<c:url value="/events" />">Events</a></li>
 					<li><a href="<c:url value="/develop/apps" />">Develop</a></li>
 					<li><a href="<c:url value="/settings" />">Settings</a></li>
 					<li><a href="<c:url value="/signout" />">Sign Out</a></li>
-					 -->
 		</sec:authorize>
 			
 	</ul>

@@ -23,6 +23,7 @@ public class EstiaUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User domainUsr = repository.findByUsername(username);
+		System.out.println("Found User: "+domainUsr.getFirstName()+" "+domainUsr.getEmail());
 		if(domainUsr==null) 
 	    	throw new UsernameNotFoundException("Username '"+username+"' was not found in estia database");
 	    return new EstiaUser(domainUsr);

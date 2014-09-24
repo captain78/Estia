@@ -31,7 +31,7 @@
              adopt a whitelisting approach where access is not allowed by default
           -->
         <intercept-url pattern="/**" access="permitAll" />
-        <form-login login-page="/signin" default-target-url="/" authentication-failure-url="/loginError"/>
+        <form-login/> <!--  login-page="/signin" default-target-url="/" authentication-failure-url="/loginError"/>  -->
         <logout logout-success-url="/loggedout.jsp" delete-cookies="JSESSIONID"/>
         <remember-me />
 <!--

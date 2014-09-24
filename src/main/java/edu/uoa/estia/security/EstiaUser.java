@@ -25,6 +25,7 @@ public class EstiaUser implements Serializable, UserDetails, CredentialsContaine
 	 
 	public EstiaUser(User usr){
 		domainUsr = usr;
+		System.out.println("domainUsr = "+domainUsr);
 		if(usr!=null)
 			pwdCopy = usr.getPassword();
 	}
@@ -121,7 +122,9 @@ public class EstiaUser implements Serializable, UserDetails, CredentialsContaine
         } else {
             sb.append("Not granted any authorities");
         }
-
+        if(domainUsr!=null)
+        	sb.append("Email: "+domainUsr.getEmail());
+        
         return sb.toString();
 	}
 }
