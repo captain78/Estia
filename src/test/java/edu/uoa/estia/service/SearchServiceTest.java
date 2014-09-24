@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.uoa.estia.domain.Akinita;
+import edu.uoa.estia.domain.Property;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,7 +24,7 @@ public class SearchServiceTest {
 	
 	@Test
 	public void testFindAll() {
-		List<Akinita> ak = searchservice.findAll();
+		List<Property> ak = searchservice.findAll();
 		Assert.assertNotNull(ak);
 	    Assert.assertEquals(4, ak.size());
 	}

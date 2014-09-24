@@ -21,8 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import model.Propertyimage;
-
 import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -240,7 +238,7 @@ public class Property implements Serializable {
 		return propertyimage;
 	}
 
-	public Propertyimage removePropertyimage(Propertyimage propertyimage) {
+	public PropertyImage removePropertyimage(PropertyImage propertyimage) {
 		getPropertyimages().remove(propertyimage);
 		propertyimage.setProperty(null);
 

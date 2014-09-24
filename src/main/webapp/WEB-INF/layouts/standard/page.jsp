@@ -72,7 +72,7 @@
 			src="<c:url value="/resources/${script}" />"></script>
 	</c:forEach>
 	<script type="text/javascript">
-		$.cookie('Greenhouse.timeZoneOffset',
+		$.cookie('Estia.timeZoneOffset',
 				new Date().getTimezoneOffset() * 60000);
 	</script>
 </body>

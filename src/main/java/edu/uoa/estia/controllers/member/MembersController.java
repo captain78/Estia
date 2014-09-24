@@ -13,17 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.uoa.estia.controllers;
+package edu.uoa.estia.controllers.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import edu.uoa.estia.repository.UserRepository;
+
 
 
 @Controller
-public class SigninController {
+@RequestMapping("/members")
+public class MembersController {
 	
-	@RequestMapping(value="/signin", method=RequestMethod.GET)
-	public void signin() {
+	private final UserRepository userRepository;
+
+	@Autowired
+	public MembersController(UserRepository userRepository) {
+		this.userRepository = userRepository;
 	}
+
 }

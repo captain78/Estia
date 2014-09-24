@@ -5,26 +5,26 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import edu.uoa.estia.domain.Akinita;
-import edu.uoa.estia.repository.AkinitaRepository;
+import edu.uoa.estia.domain.Property;
+import edu.uoa.estia.repository.PropertyRepository;
 
 @Component("SearchServiceImpl")
 public class SearchServiceImpl implements SearchService {
 
-	final AkinitaRepository propertyRepo;
+	final PropertyRepository propertyRepo;
 	
     @Autowired
-	public SearchServiceImpl(final AkinitaRepository propertyRepo){
+	public SearchServiceImpl(final PropertyRepository propertyRepo){
 		this.propertyRepo = propertyRepo;
 	}
     
 	@Override
-	public List<Akinita> findAll() {
+	public List<Property> findAll() {
 		return propertyRepo.findAll();
 	}
 
 	@Override
-	public List<Akinita> findAll(int rooms, boolean centralHeating,
+	public List<Property> findAll(int rooms, boolean centralHeating,
 			boolean hasGaraze, String algo) {
 		// TODO Auto-generated method stub
 		return null;

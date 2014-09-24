@@ -1,5 +1,6 @@
-package edu.uoa.estia.controllers;
+package edu.uoa.estia.controllers.search;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -13,10 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import edu.uoa.estia.domain.Akinita;
+import edu.uoa.estia.domain.Property;
 import edu.uoa.estia.service.SearchService;
 
 @Controller
-@RequestMapping("/services/search")
 public class SearchController {
 
     private static Logger LOG = LoggerFactory.getLogger(SearchController.class);
@@ -24,11 +25,22 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
-    @RequestMapping( method = RequestMethod.GET, value = "/all")
+	/**
+	 * Renders the home page as HTML in thw web browser.
+	 * The home page is different based on whether the user is signed in or not.
+	 */
+	@RequestMapping(value="/search", method=RequestMethod.GET)
+	public String home(Principal user) {
+		return user != null ? "search" : "/";
+	}
+	
+    @RequestMapping( method = RequestMethod.GET, value = "/search/services/all")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public List<Akinita> getAll() {
+    public List<Property> getAll() {
         return searchService.findAll();
     }
+    
+    
     
 }

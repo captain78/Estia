@@ -25,7 +25,7 @@ public class EstiaUser implements Serializable, UserDetails, CredentialsContaine
 	 
 	public EstiaUser(User usr){
 		domainUsr = usr;
-		System.out.println("domainUsr = "+domainUsr);
+		System.out.println("------------------------- domainUsr = "+domainUsr);
 		if(usr!=null)
 			pwdCopy = usr.getPassword();
 	}

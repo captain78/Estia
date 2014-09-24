@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><tiles:insertAttribute name="title" defaultValue="Greenhouse" /></title>
+	<title><tiles:insertAttribute name="title" defaultValue="Estia" /></title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 	<link rel="stylesheet" href="<c:url value="/resources/mobile/page.css" />" type="text/css" media="screen" />

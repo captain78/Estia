@@ -3,8 +3,9 @@
 
 <tiles-definitions>
 
-    <definition name="admin/load" extends="page">
-        <put-attribute name="content" value="/WEB-INF/views/admin/load.jsp" />
-    </definition>
-    
+	<definition name="members/view" extends="page">
+		<put-attribute name="title" expression="${profile.displayName} | Εστία" />
+		<put-attribute name="content" value="/WEB-INF/views/members/view.jsp" />
+	</definition>
+
 </tiles-definitions>
