@@ -284,10 +284,10 @@
 		//map.addLayer(oria_nomwn);
 		//map.addLayer(ethnika_parka);
 		//map.addLayer(oikismoi);
-		map.addLayer(poleis);
+		//map.addLayer(poleis);
 		//map.addLayer(sxoleia);
 		//map.addLayer(dhmosia_kthria);
-		map.addLayer(akinita); 
+		//map.addLayer(akinita); 
 		map.addLayer(propertiesWMS);
 		map.addLayer(propertiesWFS);
 		//map.addLayer(wfs_GET);  // skip this. its not supposed to wotk with the vanilla port of the proxy.cgi to Pythno 3 (3.4.1)
